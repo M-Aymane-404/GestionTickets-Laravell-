@@ -1,15 +1,46 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TicketController\ClientController;
+use App\Http\Controllers\MessageController\clientMessageController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('client/dashboard', function () {
-    return view('dashboard.client');
-})->middleware(['auth', 'verified'])->name('dashboard.client');
+
+
+
+
+     Route::middleware(['auth', 'verified'])
+    ->prefix('client')
+    ->group(function () {
+        Route::get('dashboard', [clientController::class, 'index'])->name('dashboard.client');
+        Route::get('ticket/{ticket}', [clientController::class, 'ticketDetails'])->name('ticketDetails.client');
+        Route::post('storeMessage/{ticket}', [clientMessageController::class, 'commenteStore'])->name('storeMessage');
+       // Route::get('ticket/create', [clientController::class, 'create'])->name('createTicket.client');
+       // Route::post('ticket/create', [clientController::class, 'store'])->name('ticketStore');
+Route::get('create/ticket', [clientController::class, 'create'])->name('createTicket.client');
+    Route::post('create/ticket', [clientController::class, 'store'])->name('ticketStore');
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('assistant/dashboard', function () {
     return view('dashboard.assistant');
