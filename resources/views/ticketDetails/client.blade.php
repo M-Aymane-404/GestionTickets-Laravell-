@@ -73,7 +73,24 @@
 </div>
 
 
-
+<div class="container">
+    <h1>etat</h1>
+    @if ($ticket->etat == 'nouveau')
+    <p>Etat Nouveau: {{ $barre_etat->date_nouveau }}</p>
+    @elseif ($ticket->etat == 'enCours')
+    <p>Etat Nouveau: {{ $barre_etat->date_nouveau }}</p>
+    <p>Etat En cours : {{ $barre_etat->date_enCours }}</p>
+    @elseif ($ticket->etat == 'traiter')
+     <p>Etat Nouveau: {{ $barre_etat->date_nouveau }}</p>
+    <p>Etat En cours : {{ $barre_etat->date_enCours }}</p>
+    <p>Etat Traiter: {{ $barre_etat->date_traiter }}</p>
+    @else
+    <p>Etat Nouveau: {{ $barre_etat->date_nouveau }}</p>
+    <p>Etat En cours : {{ $barre_etat->date_enCours }}</p>
+    <p>Etat Traiter: {{ $barre_etat->date_traiter }}</p>
+    <p>Etat Fermer: {{ $barre_etat->date_fermer }}</p>
+    @endif
+</div>
 
 
 

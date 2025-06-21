@@ -14,7 +14,13 @@ class Ticket extends Model
   public function leNomAssistant(){
         $email =  User::where('email', $this->assignee)->first();
 
-        return $email ? $email->lastName : 'attender un assistant';
+        return $email ? $email->lastName : 'attender un assistant pour traiter votre demande';
+
+    }
+      public function leNomdemandeur(){
+        $email =  User::where('email', $this->demandeur)->first();
+
+        return $email ? $email->lastName : 'inconnue';
 
     }
 }
