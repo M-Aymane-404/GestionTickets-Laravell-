@@ -105,6 +105,19 @@ $demandeurs = User::where([
 
     }
 
+    public function destroy(Ticket $ticket){
+                 $messages = Message::where('ticket_id',$ticket->id);
+                $barre_etat = BarreEtat::where('ticket_id',$ticket->id) ;
+                $messages->delete();
+                $barre_etat->delete() ;
+                $ticket->delete();
+
+
+
+
+        return redirect()->route('dashboard.admin' );
+    }
+
 
 
 }

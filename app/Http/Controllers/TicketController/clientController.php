@@ -79,7 +79,7 @@ class ClientController extends Controller
                                 }
 
 
-                                if($nbticket<= $NbticketDAssistant){
+                                if($nbticket< $NbticketDAssistant){
                                     $AssistantAvecMinTickets = $assistant;
                                     $NbticketDAssistant = $nbticket;
                                 }

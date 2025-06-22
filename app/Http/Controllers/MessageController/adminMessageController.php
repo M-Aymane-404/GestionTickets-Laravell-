@@ -26,7 +26,7 @@ class adminMessageController extends Controller
 
     $message = Message::create($messageData);
 
-       return redirect()->route('ticketDetails.assistant',  ['ticket' => $ticket->id]);
+       return redirect()->route('ticketDetails.admin',  ['ticket' => $ticket->id]);
        //return redirect()->route('dashboard.client');
     }
 

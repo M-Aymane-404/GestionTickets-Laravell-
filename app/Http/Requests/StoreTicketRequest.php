@@ -24,7 +24,6 @@ class StoreTicketRequest extends FormRequest
         return ['titre' => 'required|string',
         'description' =>'required|string',
         'piecesJointes' => 'nullable|string',
-        'etat' => 'required|in:nouveau,enCours,traiter,fermer',
-          ];
+           ];
     }
 }

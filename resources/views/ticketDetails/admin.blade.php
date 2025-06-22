@@ -103,6 +103,14 @@
                              <a href="{{ route('editTicket.admin',$ticket) }}">editer le ticket</a>
                      </div>
 
+                     <form action="{{ route('ticket.delete',$ticket) }}" method="post">
+                            @csrf
+
+                        @method('DELETE')
+                        <button>delete</button>
+
+                     </form>
+
                 </div>
             </div>
     </div>
