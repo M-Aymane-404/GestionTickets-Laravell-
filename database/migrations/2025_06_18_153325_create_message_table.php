@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('message', function (Blueprint $table) {
            $table->id();
     $table->text('messageEnvoyer');
-    $table->unsignedBigInteger('ticket_id')->nullable();
+    $table->unsignedBigInteger('ticket_id') ;
     $table->foreign('ticket_id')->references('id')->on('ticket')->onDelete('cascade');
     $table->string('piecesJointes')->nullable();
-    $table->string('emetteur')->nullable();
+    $table->string('emetteur') ;
     $table->timestamp('date');
     $table->timestamps();
      $table->engine = 'InnoDB';

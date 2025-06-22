@@ -5,12 +5,27 @@ use App\Http\Controllers\TicketController\ClientController;
 use App\Http\Controllers\MessageController\clientMessageController;
 use App\Http\Controllers\TicketController\assistantController;
 use App\Http\Controllers\MessageController\assistantMessageController;
+use App\Http\Controllers\TicketController\adminController;
+use App\Http\Controllers\MessageController\adminMessageController;
+
+
 
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// auth crud
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
 
 
 
@@ -50,25 +65,25 @@ Route::get('/', function () {
 
 
 
+// admin routes
+
+        Route::middleware(['auth', 'verified'])
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('dashboard', [adminController::class, 'index'])->name('dashboard.admin');
+        Route::get('ticket/{ticket}', [adminController::class, 'ticketDetails'])->name('ticketDetails.admin');
+        Route::post('storeMessage/{ticket}', [adminMessageController::class, 'commenteStore'])->name('storeMessage');
+        Route::patch('updateEtat/{ticket}', [adminController::class, 'updateEtat'])->name('updateEtat.admin');
+        Route::get('ticket/{ticket}/edit',[adminController::class, 'editTicket'])->name('editTicket.admin');
+        Route::patch('ticket/{ticket}', [adminController::class, 'updateTicket'])->name('updateTicket.admin');
 
 
 
 
 
 
-
-
-Route::get('admin/dashboard', function () {
-    return view('dashboard.admin');
-})->middleware(['auth', 'verified'])->name('dashboard.admin');
+    });
 
 
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';

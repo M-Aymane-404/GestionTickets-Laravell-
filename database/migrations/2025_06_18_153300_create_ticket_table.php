@@ -16,7 +16,7 @@ return new class extends Migration
     $table->string('titre');
     $table->text('description');
     $table->string('demandeur');
-    $table->string('assignee')->nullable();
+    $table->string('assignee') ;
     $table->string('piecesJointes')->nullable();
     $table->enum('etat', ['nouveau', 'enCours', 'traiter','fermer'])->default('nouveau');
     $table->timestamp('date');
