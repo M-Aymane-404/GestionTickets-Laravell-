@@ -19,30 +19,44 @@ class assistantController extends Controller
 
     public function index()
     {
+
+        if (auth()->user() && auth()->user()->type === 'assistant'){
         $tickets = Ticket::where('assignee', auth()->user()->email)->get();
 
 
         $assistant = auth()->user()->firstName;
 
 
-        return view('dashboard.assistant', compact('tickets','assistant'));
+        return view('dashboard.assistant', compact('tickets','assistant'));}
+    elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'admin'){
+        return redirect('admin/dashboard');
+    }
 
     }
 
 
        public function ticketDetails(Ticket $ticket){
+        if (auth()->user() && auth()->user()->type === 'assistant'){
          $messages = Message::where('ticket_id',$ticket->id)->get();
         $assistant = auth()->user()->lastName;
         $barre_etat = BarreEtat::where('ticket_id',$ticket->id)->first();
 
 
 
-        return view ('ticketDetails.assistant',compact('ticket','assistant','messages','barre_etat'));
+        return view ('ticketDetails.assistant',compact('ticket','assistant','messages','barre_etat'));}
+    elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'admin'){
+        return redirect('admin/dashboard');
+    }
     }
 
 
 
     public function updateEtat( Ticket $ticket){
+        if (auth()->user() && auth()->user()->type === 'assistant'){
         $barre_etat = BarreEtat::Where('ticket_id',$ticket->id)->first();
 
         if($ticket->etat == 'nouveau'){
@@ -55,9 +69,14 @@ class assistantController extends Controller
         }elseif($ticket->etat == 'traiter'){
             $ticket->update(['etat' => 'fermer']) ;
             $barre_etat->update(['date_fermer' => now()]);
-        } 
+        }
 
-        return  redirect()->route('ticketDetails.assistant',$ticket);
+        return  redirect()->route('ticketDetails.assistant',$ticket);}
+    elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'admin'){
+        return redirect('admin/dashboard');
+    }
 
     }
 

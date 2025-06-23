@@ -19,6 +19,7 @@ class adminController extends Controller
 
 public function index( Request $request){
 
+ if (auth()->user() && auth()->user()->type === 'admin') {
 
 $nomberAssistant = User::where('type','assistant')->count();
 $nomberclient = User::where('type','client')->count();
@@ -52,6 +53,13 @@ $demandeurs = User::where([
     }
      $tickets = $tickets->paginate(10);
     return view ('dashboard.admin',compact('tickets','nomberTicket','nomberclient','nomberAssistant'));
+
+    }
+    elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'assistant'){
+        return redirect('assistant/dashboard');
+    }
 }
 
 
@@ -60,6 +68,7 @@ $demandeurs = User::where([
 
 
   public function ticketDetails(Ticket $ticket){
+    if (auth()->user() && auth()->user()->type === 'admin') {
          $messages = Message::where('ticket_id',$ticket->id)->get();
         $assistant = auth()->user()->lastName;
         $barre_etat = BarreEtat::where('ticket_id',$ticket->id)->first();
@@ -68,10 +77,17 @@ $demandeurs = User::where([
 
         return view ('ticketDetails.admin',compact('ticket','assistant','messages','barre_etat'));
     }
+    elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'assistant'){
+        return redirect('assistant/dashboard');
+    }
+    }
 
 
 
     public function updateEtat( Ticket $ticket){
+        if (auth()->user() && auth()->user()->type === 'admin') {
         $barre_etat = BarreEtat::Where('ticket_id',$ticket->id)->first();
 
         if($ticket->etat == 'nouveau'){
@@ -87,6 +103,12 @@ $demandeurs = User::where([
         }
 
         return  redirect()->route('ticketDetails.admin',$ticket);
+         }
+    elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'assistant'){
+        return redirect('assistant/dashboard');
+    }
 
     }
 
@@ -94,18 +116,33 @@ $demandeurs = User::where([
     public function editTicket(Ticket $ticket){
 
 
+if (auth()->user() && auth()->user()->type === 'admin') {
 
         return view ('editTicket.admin',compact('ticket' ));
+         }
+    elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'assistant'){
+        return redirect('assistant/dashboard');
+    }
     }
 
     public function updateTicket(StoreTicketRequest $request,Ticket $ticket){
+        if (auth()->user() && auth()->user()->type === 'admin') {
         $ticket->update([[$request->validated()], 'etat' => $request->input('etat'),'assignee' => $request->input('assignee')]);
 
         return redirect()->route('ticketDetails.admin',$ticket);
+         }
+    elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'assistant'){
+        return redirect('assistant/dashboard');
+    }
 
     }
 
     public function destroy(Ticket $ticket){
+        if (auth()->user() && auth()->user()->type === 'admin') {
                  $messages = Message::where('ticket_id',$ticket->id);
                 $barre_etat = BarreEtat::where('ticket_id',$ticket->id) ;
                 $messages->delete();
@@ -116,6 +153,13 @@ $demandeurs = User::where([
 
 
         return redirect()->route('dashboard.admin' );
+        
+        }
+    elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'assistant'){
+        return redirect('assistant/dashboard');
+    }
     }
 
 
