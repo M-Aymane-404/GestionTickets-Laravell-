@@ -70,6 +70,10 @@
                         <p><strong>Assignee:</strong> {{ $assistant }}</p>
                         <p><strong>Demandeur:</strong> {{ $ticket->leNomdemandeur()}}</p>
                         <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($ticket->date)->format('d M Y') }}</p>
+                           @if ($ticket->piecesJointes)
+                        <br>
+                        <a href="{{ asset('storage/' . $ticket->piecesJointes) }}" class="btn btn-sm btn-info" target="_blank">View Attachment</a>
+                    @endif
                         <p><strong>Status:</strong> {{ $ticket->etat }}</p>
 
                             @if ($ticket->etat == 'nouveau')
@@ -106,18 +110,18 @@
 
 
 <div class="container">
-    <h1>etat</h1>
+       <h1>etat</h1>
     @if ($ticket->etat == 'nouveau')
-    <p>Etat Nouveau: {{ $barre_etat->date_nouveau }}</p>
+    <p>Etat Nouveau: {{ $barre_etat->created_at }}</p>
     @elseif ($ticket->etat == 'enCours')
-    <p>Etat Nouveau: {{ $barre_etat->date_nouveau }}</p>
+    <p>Etat Nouveau: {{ $barre_etat->created_at }}</p>
     <p>Etat En cours : {{ $barre_etat->date_enCours }}</p>
     @elseif ($ticket->etat == 'traiter')
-     <p>Etat Nouveau: {{ $barre_etat->date_nouveau }}</p>
+     <p>Etat Nouveau: {{ $barre_etat->created_at }}</p>
     <p>Etat En cours : {{ $barre_etat->date_enCours }}</p>
     <p>Etat Traiter: {{ $barre_etat->date_traiter }}</p>
     @else
-    <p>Etat Nouveau: {{ $barre_etat->date_nouveau }}</p>
+    <p>Etat Nouveau: {{ $barre_etat->created_at }}</p>
     <p>Etat En cours : {{ $barre_etat->date_enCours }}</p>
     <p>Etat Traiter: {{ $barre_etat->date_traiter }}</p>
     <p>Etat Fermer: {{ $barre_etat->date_fermer }}</p>
@@ -132,34 +136,42 @@
 
 <div class="container">
     <div class="card-body">
-            <h4>Messages:</h4>
+        <h4>Messages:</h4>
 
-            @foreach ($messages as $message)
-                <div class="media mb-4">
-                     <div class="media-body">
-                        <h5 class="mt-0">{{ $message->emetteur }}</h5>
-                        <p>{{ $message->messageEnvoyer }}</p>
-                        <small class="text-muted">Date: {{ \Carbon\Carbon::parse($message->date)->format('d M Y H:i') }}</small>
+        @foreach ($messages as $message)
+            <div class="media mb-4">
+                <div class="media-body">
+                    <h5 class="mt-0">{{ $message->emetteur }}</h5>
+                    <p>{{ $message->messageEnvoyer }}</p>
+                    <small class="text-muted">Date: {{ \Carbon\Carbon::parse($message->date)->format('d M Y H:i') }}</small>
 
-                        @if ($message->piecesJointes)
-                            <br>
-                            <a href="{{ asset('storage/' . $message->piecesJointes) }}" class="btn btn-sm btn-info" target="_blank">View Attachment</a>
-                        @endif
-                    </div>
+                    @if ($message->piecesJointes)
+                        <br>
+                        <a href="{{ asset('storage/' . $message->piecesJointes) }}" class="btn btn-sm btn-info" target="_blank">View Attachment</a>
+                    @endif
                 </div>
-            @endforeach
+            </div>
+        @endforeach
     </div>
 </div>
+
 <div class="container">
-    <form action="{{ route('storeMessage',$ticket->id) }}" method="POST">
+    <form action="{{ route('storeMessage', $ticket->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label for="messageEnvoyer">Message</label>
+            <textarea name="messageEnvoyer" class="form-control" id="messageEnvoyer" rows="4" required></textarea>
+        </div>
 
-             @csrf
+        <div class="form-group">
+            <label for="piecesJointes">Upload File</label>
+            <input type="file" name="piecesJointes" id="piecesJointes" class="form-control">
+        </div>
 
-    <input type="text" name="messageEnvoyer">
-    <input type="text" name="piecesJointes">
-    <button type="submit">envoyer</button>
+        <button type="submit" class="btn btn-primary">Send</button>
     </form>
 </div>
+
 
 
 

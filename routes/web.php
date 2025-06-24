@@ -77,6 +77,11 @@ require __DIR__.'/auth.php';
         Route::get('ticket/{ticket}/edit',[adminController::class, 'editTicket'])->name('editTicket.admin');
         Route::patch('ticket/{ticket}', [adminController::class, 'updateTicket'])->name('updateTicket.admin');
         Route::delete('/ticket/{ticket}',[adminController::class,'destroy'])->name('ticket.delete');
+        Route::get('create/user',[adminController::class, 'addUser'])->name('addUser.admin');
+        Route::post('store/user', [adminController::class, 'storeUser'])->name('storeUser.admin');
+
+
+
 
 
 

@@ -17,12 +17,21 @@ class adminMessageController extends Controller
 
       public function commenteStore(StoreCommentRequest $request,Ticket $ticket)
     {
+            $piecesJointes = null;
+    if ($request->hasFile('piecesJointes') && $request->file('piecesJointes')->isValid()) {
+         $piecesJointes = $request->file('piecesJointes')->store('uploads', 'public');
+    }
 
-
-          $messageData = array_merge($request->validated(), [
+     $messageData = array_merge($request->validated(), [
         'emetteur' => auth()->user()->lastName,
         'ticket_id' => $ticket->id,
+        'piecesJointes' => $piecesJointes, 
     ]);
+
+
+
+
+
 
     $message = Message::create($messageData);
 

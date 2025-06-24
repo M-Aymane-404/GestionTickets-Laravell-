@@ -23,7 +23,7 @@ class StoreTicketRequest extends FormRequest
     {
         return ['titre' => 'required|string',
         'description' =>'required|string',
-        'piecesJointes' => 'nullable|string',
+         'piecesJointes' => 'nullable|file|mimes:jpg,png,pdf,docx',
            ];
     }
 }

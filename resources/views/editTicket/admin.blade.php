@@ -17,7 +17,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('updateTicket.admin', $ticket->id) }}" method="POST">
+            <form action="{{ route('updateTicket.admin', $ticket->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
@@ -37,11 +37,11 @@
                      <input type="text" id="assignee" name="assignee" class="form-control" value="{{ old('assignee', $ticket->assignee) }}" required>
 
                  </div>
-                {{--   <div class="form-group">
-                    <label for="assignee">assistant</label>
-                     <input type="text" id="etat" name="etat" class="form-control" value="{{ old('etat', $ticket->etat) }}" required>
+                         <div class="form-group">
+                        <label for="piecesJointes">Upload File</label>
+                        <input type="file" name="piecesJointes" id="piecesJointes" class="form-control">
+                            </div>
 
-                 </div>--}}  
 
 
 
@@ -55,7 +55,6 @@
                     </select>
                 </div>
 
-                <!-- Add any other form fields as necessary -->
 
                 <button type="submit" class="btn btn-primary">Update Ticket</button>
             </form>

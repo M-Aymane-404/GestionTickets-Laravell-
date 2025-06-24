@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\StoreTicketRequest;
+use App\Http\Requests\StoreUserRequest;
 
 
 class adminController extends Controller
@@ -52,6 +53,7 @@ $demandeurs = User::where([
         $tickets->orWhere('demandeur', 'LIKE', '%' . $demandeur->email . '%');
     }
      $tickets = $tickets->paginate(10);
+
     return view ('dashboard.admin',compact('tickets','nomberTicket','nomberclient','nomberAssistant'));
 
     }
@@ -90,17 +92,16 @@ $demandeurs = User::where([
         if (auth()->user() && auth()->user()->type === 'admin') {
         $barre_etat = BarreEtat::Where('ticket_id',$ticket->id)->first();
 
-        if($ticket->etat == 'nouveau'){
-         $ticket->update(['etat' => 'enCours']);
-         $barre_etat->update(['date_enCours' => now()]);
-
-        }elseif($ticket->etat == 'enCours'){
-         $ticket->update(['etat' => 'traiter']) ;
-          $barre_etat->update(['date_traiter' => now()]);
-        }elseif($ticket->etat == 'traiter'){
-            $ticket->update(['etat' => 'fermer']) ;
-            $barre_etat->update(['date_fermer' => now()]);
-        }
+            if($ticket->etat == 'nouveau'){
+                $ticket->update(['etat' => 'enCours']);
+                $barre_etat->update(['date_enCours' => now()]);
+             } elseif($ticket->etat == 'enCours'){
+                $ticket->update(['etat' => 'traiter']);
+                $barre_etat->update(['date_traiter' => now()]);
+             } elseif($ticket->etat == 'traiter'){
+                $ticket->update(['etat' => 'fermer']);
+                $barre_etat->update(['date_fermer' => now()]);
+             }
 
         return  redirect()->route('ticketDetails.admin',$ticket);
          }
@@ -129,7 +130,12 @@ if (auth()->user() && auth()->user()->type === 'admin') {
 
     public function updateTicket(StoreTicketRequest $request,Ticket $ticket){
         if (auth()->user() && auth()->user()->type === 'admin') {
-        $ticket->update([[$request->validated()], 'etat' => $request->input('etat'),'assignee' => $request->input('assignee')]);
+
+         $piecesJointes = null;
+    if ($request->hasFile('piecesJointes') && $request->file('piecesJointes')->isValid()) {
+         $piecesJointes = $request->file('piecesJointes')->store('uploads', 'public');
+    }
+        $ticket->update([[$request->validated()], 'etat' => $request->input('etat'),'assignee' => $request->input('assignee'), 'piecesJointes' => $piecesJointes,]);
 
         return redirect()->route('ticketDetails.admin',$ticket);
          }
@@ -153,13 +159,40 @@ if (auth()->user() && auth()->user()->type === 'admin') {
 
 
         return redirect()->route('dashboard.admin' );
-        
+
         }
     elseif (auth()->user() && auth()->user()->type === 'client'){
         return redirect('client/dashboard');
     }elseif (auth()->user() && auth()->user()->type === 'assistant'){
         return redirect('assistant/dashboard');
     }
+    }
+
+
+
+
+    public function assistanteTicket(){
+        $assistants = User::where('type','assistant')->get();
+        $Tickets = Ticket::where('assignee', $assistant)->get();
+        return view();
+    }
+
+
+
+
+
+
+    public function addUser(){
+
+
+        return view ('adduser.admin ');
+    }
+
+    public function storeUser(StoreUserRequest $request){
+
+        $user = User::create($request->validated());
+
+        return  redirect()->route('dashboard.admin');
     }
 
 

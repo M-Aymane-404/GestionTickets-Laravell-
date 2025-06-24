@@ -7,7 +7,7 @@
             <h4>Submit Ticket</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('ticketStore') }}" method="POST"  >
+            <form action="{{ route('ticketStore') }}" method="POST"  enctype="multipart/form-data" >
                 @csrf
 
                 <!-- Title Field (titre) -->
@@ -24,12 +24,11 @@
 
                 </div>
 
-                <!-- Attachment Field (piecesJointes) -->
-                <div class="form-group">
-                    <label for="piecesJointes">Attachment (optional)</label>
-                    <input type="text" name="piecesJointes" class="form-control  ">
 
-                </div>
+                 <div class="form-group">
+            <label for="piecesJointes">Upload File</label>
+            <input type="file" name="piecesJointes" id="piecesJointes" class="form-control">
+        </div>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary">Submit</button>

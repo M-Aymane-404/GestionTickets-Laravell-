@@ -38,7 +38,8 @@
                 <th scope="col">Demandeur</th>
                 <th scope="col">Date</th>
                 <th scope="col">Status</th>
-            </tr>
+                <th scope="col">le délai de la fermeture</th>
+             </tr>
         </thead>
         <tbody>
             @foreach ($tickets as $ticket)
@@ -47,9 +48,10 @@
                     <td>{{ \Illuminate\Support\Str::limit($ticket->description, 50) }}</td>
                     <td>{{ $ticket->leNomAssistant()}}</td>
                     <td>{{  $ticket->leNomdemandeur() }}</td>
-                    <td>{{ $ticket->date }}</td>
+                    <td>{{ $ticket->created_at }}</td>
                     <td>{{ $ticket->etat }}</td>
-                </tr>
+                    <td>{{ $ticket->ledelaiDefermeture() }}</td>
+                 </tr>
             @endforeach
          </tbody>
             </table>

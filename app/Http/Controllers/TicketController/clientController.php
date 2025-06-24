@@ -108,7 +108,12 @@ class ClientController extends Controller
 
               }
 
-             $ticketData =  array_merge($request->validated(),[ 'demandeur' => auth()->user()->email,'assignee' =>$AssistantAvecMinTickets->email]);
+
+                        $piecesJointes = null;
+    if ($request->hasFile('piecesJointes') && $request->file('piecesJointes')->isValid()) {
+         $piecesJointes = $request->file('piecesJointes')->store('uploads', 'public');
+    }
+             $ticketData =  array_merge($request->validated(),[ 'demandeur' => auth()->user()->email,'assignee' =>$AssistantAvecMinTickets->email,'piecesJointes' => $piecesJointes]);
              $ticket = Ticket::create($ticketData);
             $barre_etat = BarreEtat::create([
              'ticket_id' => $ticket->id,
