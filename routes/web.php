@@ -79,6 +79,9 @@ require __DIR__.'/auth.php';
         Route::delete('/ticket/{ticket}',[adminController::class,'destroy'])->name('ticket.delete');
         Route::get('create/user',[adminController::class, 'addUser'])->name('addUser.admin');
         Route::post('store/user', [adminController::class, 'storeUser'])->name('storeUser.admin');
+        Route::get('users',[adminController::class, 'assistantTicket'])->name('listerUsers.admin');
+        Route::delete('destroy/user',[adminController::class,'destroyUser'])->name('user.delete');
+
 
 
 

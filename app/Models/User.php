@@ -51,4 +51,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+
+     public function leNbTicketAssignee(){
+                $nb = Ticket::where('assignee', $this->email)->count();
+                return $nb;
+
+    }
+     public function leNbTicketdemander(){
+                $nb = Ticket::where('demandeur', $this->email)->count();
+                return $nb;
+
+    }
 }

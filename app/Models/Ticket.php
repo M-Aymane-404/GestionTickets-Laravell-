@@ -34,7 +34,7 @@ class Ticket extends Model
         $dateCreation = Carbon::parse($barre_etat->created_at);
         $dateFermeture = Carbon::parse($barre_etat->date_fermer);
 
-        
+
                 $duree = $dateFermeture->diff($dateCreation);
 
 
@@ -43,5 +43,7 @@ class Ticket extends Model
         return 'le ticket ne ferme pas';
     }
 
-}
+    }
+
+   
 }

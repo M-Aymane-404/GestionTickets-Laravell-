@@ -28,6 +28,7 @@ $nomberTicket= Ticket::all()->count();
 
 $search = $request->input('searchTerm');
 
+
 $assistants = User::where([
                         ['lastName', 'LIKE', '%' . $search . '%'],
                         ['type','assistant']
@@ -169,19 +170,6 @@ if (auth()->user() && auth()->user()->type === 'admin') {
     }
 
 
-
-
-    public function assistanteTicket(){
-        $assistants = User::where('type','assistant')->get();
-        $Tickets = Ticket::where('assignee', $assistant)->get();
-        return view();
-    }
-
-
-
-
-
-
     public function addUser(){
 
 
@@ -194,6 +182,31 @@ if (auth()->user() && auth()->user()->type === 'admin') {
 
         return  redirect()->route('dashboard.admin');
     }
+
+
+        public function assistantTicket(){
+        $assistants = User::where('type','assistant')->get();
+                $clients = User::where('type','client')->get();
+
+         return view('listerUsers.admin',compact('assistants','clients'));
+        }
+
+
+
+   public function destroyUser(User $user)
+{
+     $tickets = Ticket::where('assignee', $user->email)
+                    ->orWhere('demandeur', $user->email)
+                    ->delete();
+
+
+
+     $user->delete();
+
+     return redirect()->route('listerUsers.admin');
+}
+
+
 
 
 

@@ -1,191 +1,274 @@
-<x-app-layout>
-<x-baselayout>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="{{ asset('css/admin/ticketDetails.css') }}">
+     <title>Gestion de Tickets</title>
 
-<div class="container mt-4">
-
-    <div class="row">
-
-            <div class="col-12">
-
-                <div class="card mb-4">
 
 
-                    <div class="card-header">
-                        <h5 class="card-title">{{ $ticket->titre }}</h5>
+
+</head>
+<body style="     background-color: #dce3e7;">
+<!-- Conteneur principal -->
+<div class="row layout m-0 p-0">
+
+    <!-- Barre latérale -->
+    <div id="sidebare" class="sidebare d-flex flex-column col-2">
+
+        <!-- Bouton de toggle -->
+        <div class="button">
+            <button class="toggle-btn" onclick="toggleSidebar()">⇄</button>
+        </div>
+
+        <!-- Logo -->
+        <div class="logo">
+            <img src="{{ asset('img/logo.png') }}" alt="" width="70px">
+        </div>
+
+        <!-- Menu de navigation -->
+        <div class="hide dashbord mt-4">
+            <a href="{{ route('dashboard.admin') }}"><i class="fas fa-chart-line me-2"></i> Dashboard</a>
+        </div>
+        <div class="hide">
+            <a href="{{ route('listerUsers.admin') }}"><i class="fas fa-users me-2"></i> Utilisateur</a>
+        </div>
+        <div class="hide">
+            <a href="{{ route('addUser.admin') }}"><i class="fas fa-user-plus me-2"></i> Créer Utilisateur</a>
+        </div>
+        <div class="hide">
+            <a href="{{ route('profile.edit') }}"><i class="fas fa-user-circle me-2"></i> Profile</a>
+        </div>
+
+        <div class="hide">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <a href="{{ route('logout') }}"
+            onclick="event.preventDefault(); this.closest('form').submit();">
+                <i class="fas fa-sign-out-alt me-2"></i> Logout
+            </a>
+        </form>
+        </div>
+
+
+    </div>
+    <!-- Fin de la barre latérale -->
+
+    <!-- Contenu principal -->
+    <div class="content col">
+        <div class="row twoBorder">
+
+            <!-- Détails du ticket -->
+            <div class="col-8 details">
+            @if ($ticket->etat == 'nouveau')
+            <div class="d-flex bare align-content-center justify-content-end">
+                <div class="col-6 row bareEtat align-content-center justify-content-center">
+                    <div class="col d-flex justify-content-center align-content-center selectedEtat columnEtat">nouveau</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary  columnEtat">en Cours</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary columnEtat">traité</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary columnEtat">fermé</div>
+                </div>
+            </div>
+            @elseif ($ticket->etat == 'enCours')
+            <div class="d-flex bare align-content-center justify-content-end">
+                <div class="col-6 row bareEtat align-content-center justify-content-center">
+                    <div class="col d-flex justify-content-center align-content-center  columnEtat">nouveau</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary selectedEtat columnEtat">en Cours</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary columnEtat">traité</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary columnEtat">fermé</div>
+                </div>
+            </div>
+            @elseif ($ticket->etat == 'traiter')
+            <div class="d-flex bare align-content-center justify-content-end">
+                <div class="col-6 row bareEtat align-content-center justify-content-center">
+                    <div class="col d-flex justify-content-center align-content-center   columnEtat">nouveau</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary  columnEtat">en Cours</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary selectedEtat columnEtat">traité</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary columnEtat">fermé</div>
+                </div>
+            </div>
+            @else
+            <div class="d-flex bare align-content-center justify-content-end">
+                <div class="col-6 row bareEtat align-content-center justify-content-center">
+                    <div class="col d-flex justify-content-center align-content-center   columnEtat">nouveau</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary  columnEtat">en Cours</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary columnEtat">traité</div>
+                    <div class="col d-flex justify-content-center align-content-center border border-secondary selectedEtat columnEtat">fermé</div>
+                </div>
+            </div>
+            @endif
+                <!-- Barre d'états -->
+
+                <!-- Carte des détails -->
+                <div class="container carte">
+
+                    <!-- Titre -->
+                    <div class="col title">
+                        {{ $ticket->titre }}
                     </div>
 
-<div>
-                    @if ($ticket->etat == 'nouveau')
-                        <div class="container  text-center">
-                                <div class="row  row-cols-auto border border-primary position-absolute top-0 end-0 bg-body-secondary">
-                                    <div class="col bg-primary-subtle border border-primary">nouveau</div>
-                                    <div class="col border border-secondary">en Cours</div>
-                                    <div class="col border border-secondary">traité</div>
-                                    <div class="col border border-secondary">fermé</div>
-                                </div>
+                    <!-- Contenu de la carte -->
+                    <div class="col contentCarte">
+                        <div class="col" style="line-height: 25px;">
+                            <strong>Description :</strong>
+                            <span> {{  $ticket->description, 150 }}</span>
                         </div>
-
-
-
-                     @elseif ($ticket->etat == 'enCours')
-                        <div class="container  text-center">
-                                <div class="row  row-cols-auto border border-primary position-absolute top-0 end-0 bg-body-secondary">
-                                    <div class="col border border-secondary">nouveau</div>
-                                    <div class="col bg-primary-subtle border border-primary">en Cours</div>
-                                    <div class="col border border-secondary">traité</div>
-                                    <div class="col border border-secondary">fermé</div>
-                                </div>
-                        </div>
-
-
-                     @elseif ($ticket->etat == 'traiter')
-                        <div class="container  text-center">
-                                <div class="row  row-cols-auto border border-primary position-absolute top-0 end-0 bg-body-secondary">
-                                    <div class="col border border-secondary">nouveau</div>
-                                    <div class="col border border-secondary">en Cours</div>
-                                    <div class="col bg-primary-subtle border border-primary">traité</div>
-                                    <div class="col border border-secondary">fermé</div>
-                                </div>
-                        </div>
-
-
-                     @else
-                        <div class="container  text-center">
-                                <div class="row  row-cols-auto border border-primary position-absolute top-0 end-0 bg-body-secondary">
-                                    <div class="col border border-secondary">nouveau</div>
-                                    <div class="col border border-secondary">en Cours</div>
-                                    <div class="col border border-secondary">traité</div>
-                                    <div class="col bg-primary-subtle border border-primary ">fermé</div>
-                                </div>
-                        </div>
-                    @endif
-</div>
-
-
-
-
-
-                    <div class="card-body">
-                        <p><strong>Description:</strong> {{  $ticket->description, 150 }}</p>
-                        <p><strong>Assignee:</strong> {{ $ticket->leNomAssistant() }}</p>
-                        <p><strong>Demandeur:</strong> {{ $ticket->leNomdemandeur()}}</p>
-                        <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($ticket->date)->format('d M Y') }}</p>
-                           @if ($ticket->piecesJointes)
-                        <br>
-                        <a href="{{ asset('storage/' . $ticket->piecesJointes) }}" class="btn btn-sm btn-info" target="_blank">View Attachment</a>
-                    @endif
-                        <p><strong>Status:</strong> {{ $ticket->etat }}</p>
-                        <p><strong>le délai de la fermeture</strong>{{ $ticket->ledelaiDefermeture() }}</p>
-
-                            @if ($ticket->etat == 'nouveau')
-
-                            <p><strong>changer etat :</strong> <form action="{{ route('updateEtat.admin',$ticket) }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-
-                                <button class="border border-primary  bg-body-secondary" type="submit">en cours </button></form></p>
-                            @elseif ($ticket->etat == 'enCours')
-                            <p><strong>changer etat :</strong> <form action="{{ route('updateEtat.admin',$ticket) }}" method="POST">
-                                 @csrf
-                                @method('PATCH')
-
-                                <button class="border border-primary  bg-body-secondary" type="submit">traiter</button></form></p>
-
-                            @elseif ($ticket->etat == 'traiter')
-
-                            <p><strong>changer etat :</strong> <form action="{{ route('updateEtat.admin',$ticket) }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-
-                                <button class="border border-primary  bg-body-secondary" type="submit">fermer</button></form></p>
-
-                            @endif
-
+                        <div class="col"><strong>Assignee :</strong> <span>{{ $ticket->leNomAssistant() }}</span></div>
+                        <div class="col"><strong>Demandeur :</strong> <span>{{ $ticket->leNomdemandeur()}}</span></div>
+                        <div class="col"><strong>Date :</strong> <span> {{ \Carbon\Carbon::parse($ticket->date)->format('d M Y') }}</span></div>
+                       <!--<div class="col"><strong>Status :</strong> <span>fermer</span></div>-->
+                        <div class="col"><strong>le délai de la fermeture :</strong> <span>{{ $ticket->ledelaiDefermeture() }}</span></div>
+                         @if ($ticket->piecesJointes)
+                        <div class="col piece"><a href="{{ asset('storage/' . $ticket->piecesJointes) }} " target="_blank">la pièce de jointure</a></div>
+                        @endif
 
                     </div>
 
-                    <div class="container">
-                             <a href="{{ route('editTicket.admin',$ticket) }}">editer le ticket</a>
+                    <!-- Actions -->
+                    <div class="col action">
+                        <div class="row justify-content-evenly">
+                            <div class="col-2 d-flex edit">
+                                <a href="{{ route('editTicket.admin',$ticket) }}">modifier</a>
+                            </div>
+                            <div class="col-2 d-flex delete">
+                                <form action="{{ route('ticket.delete',$ticket) }}" method="post">
+                                @csrf
+                                 @method('DELETE')
+                                    <button>supprimer</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Fin carte détails -->
+
+
+                <div class="col container ticketEtat   ">
+                    <div class="col d-flex justify-content-center align-items-center dateEtat">
+                        @if ($ticket->etat == 'nouveau')
+                        <div class="row">
+                            <strong>etat nouveau</strong>
+                            <span>{{ \Carbon\Carbon::parse( $barre_etat->created_at)->format('d M Y') }}</span>
+                        </div>
+                        @elseif ($ticket->etat == 'enCours')
+                        <div  class="row ">
+                            <strong>etat nouveau</strong>
+                            <span>{{ \Carbon\Carbon::parse( $barre_etat->created_at)->format('d M Y') }}</span>
+                        </div>
+                        <div class="row">
+                            <strong>etat En Cours</strong>
+                            <span>{{ \Carbon\Carbon::parse( $barre_etat->date_enCours )->format('d M Y') }}</span>
+                        </div>
+                        @elseif ($ticket->etat == 'traiter')
+                        <div class="row">
+                            <strong>etat nouveau</strong>
+                            <span>{{ \Carbon\Carbon::parse( $barre_etat->created_at )->format('d M Y') }}</span>
+                        </div>
+                        <div class="row">
+                            <strong>etat En Cours</strong>
+                            <span>{{ \Carbon\Carbon::parse( $barre_etat->date_enCours )->format('d M Y') }}</span>
+                        </div>
+                        <div class="row">
+                            <strong>etat traiter</strong>
+                            <span>{{ \Carbon\Carbon::parse( $barre_etat->date_traiter )->format('d M Y') }}</span>
+                        </div>
+                        @else
+                        <div  class="row">
+                            <strong>etat nouveau</strong>
+                            <span>{{ \Carbon\Carbon::parse( $barre_etat->created_at )->format('d M Y') }}</span>
+                        </div>
+                        <div class="row">
+                            <strong>etat En Cours</strong>
+                            <span>{{ \Carbon\Carbon::parse( $barre_etat->date_enCours )->format('d M Y') }}</span>
+                        </div>
+                        <div class="row">
+                            <strong>etat traiter</strong>
+                            <span>{{ \Carbon\Carbon::parse( $barre_etat->date_traiter)->format('d M Y') }}</span>
+                        </div>
+                        <div class="row">
+                            <strong>etat fermer</strong>
+                            <span>{{ \Carbon\Carbon::parse( $barre_etat->date_fermer )->format('d M Y') }}</span>
+                        </div>
+                        @endif
+
+                         @if ($ticket->etat == 'nouveau')
+                         <form class="etatButton" action="{{ route('updateEtat.admin',$ticket) }}" method="POST">
+                             @csrf
+                             @method('PATCH')
+                             <button type="submit">en cours</button>
+                         </form>
+                         @elseif ($ticket->etat == 'enCours')
+                         <form class="etatButton" action="{{ route('updateEtat.admin',$ticket) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit">Traiter</button>
+                        </form>
+                         @elseif ($ticket->etat == 'traiter')
+                         <form class="etatButton" action="{{ route('updateEtat.admin',$ticket) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit">fermer</button>
+                        </form>
+                        @endif
+                    </div>
+                </div>
+
+            </div>
+            <!-- Fin détails -->
+
+            <!--   messages -->
+            <div class="col messagesCarte d-flex flex-column  ">
+
+                    <div><h3>les messages</h3></div>
+                     <div class="messages  message-scroll  ">
+            @foreach ($messages as $message)
+                        <div class="message">
+                            <div class="userAndMessage">
+                                <div class="user">{{ $message->emetteur }} </div>
+                                <hr>
+                                <div class="ms-2"> message : <span>{{ $message->messageEnvoyer }}</span></div>
+@if ($message->piecesJointes)
+                        <div class="col pieceMessage"><a href="{{ asset('storage/' . $message->piecesJointes) }}"  target="_blank">la pièce de jointure</a></div>
+@endif
+
+                            </div>
+                                <div class="date">{{ \Carbon\Carbon::parse($message->date)->format('d M Y H:i') }}</div>
+                        </div>
+            @endforeach
+
+                    </div>
+
+                     <div class="inputmessage     ">
+                        <hr>
+                            <h4></h4>
+                            <form action="{{ route('storeMessage', $ticket->id) }}" method="POST" enctype="multipart/form-data" class="row">
+                            @csrf
+                            <textarea name="messageEnvoyer"  class="form-control messageenvoyer" id="messageEnvoyer" rows="5" placeholder="saisir votre message " required></textarea>
+                            <div class="row p-0 m-0 mt-2    ">
+                                        <input type="file" name="piecesJointes" id="piecesJointes" class="form-control  col" >
+                                        <button type="submit" class="col ms-3 envoyer">envoyer</button>
+                                    </div>
+                            </form>
                      </div>
 
-                     <form action="{{ route('ticket.delete',$ticket) }}" method="post">
-                            @csrf
+             </div>
+            <!-- Fin messages -->
 
-                        @method('DELETE')
-                        <button>delete</button>
-
-                     </form>
-
-                </div>
-            </div>
-    </div>
-</div>
-
-
-<div class="container">
-    <h1>etat</h1>
-    @if ($ticket->etat == 'nouveau')
-    <p>Etat Nouveau: {{ $barre_etat->created_at }}</p>
-    @elseif ($ticket->etat == 'enCours')
-    <p>Etat Nouveau: {{ $barre_etat->created_at }}</p>
-    <p>Etat En cours : {{ $barre_etat->date_enCours }}</p>
-    @elseif ($ticket->etat == 'traiter')
-     <p>Etat Nouveau: {{ $barre_etat->created_at }}</p>
-    <p>Etat En cours : {{ $barre_etat->date_enCours }}</p>
-    <p>Etat Traiter: {{ $barre_etat->date_traiter }}</p>
-    @else
-    <p>Etat Nouveau: {{ $barre_etat->created_at }}</p>
-    <p>Etat En cours : {{ $barre_etat->date_enCours }}</p>
-    <p>Etat Traiter: {{ $barre_etat->date_traiter }}</p>
-    <p>Etat Fermer: {{ $barre_etat->date_fermer }}</p>
-    @endif
-</div>
-
-
-
-
-
-
-
-<div class="container">
-    <div class="card-body">
-        <h4>Messages:</h4>
-
-        @foreach ($messages as $message)
-            <div class="media mb-4">
-                <div class="media-body">
-                    <h5 class="mt-0">{{ $message->emetteur }}</h5>
-                    <p>{{ $message->messageEnvoyer }}</p>
-                    <small class="text-muted">Date: {{ \Carbon\Carbon::parse($message->date)->format('d M Y H:i') }}</small>
-
-                    @if ($message->piecesJointes)
-                        <br>
-                        <a href="{{ asset('storage/' . $message->piecesJointes) }}" class="btn btn-sm btn-info" target="_blank">View Attachment</a>
-                    @endif
-                </div>
-            </div>
-        @endforeach
-    </div>
-</div>
-
-<div class="container">
-    <form action="{{ route('storeMessage', $ticket->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div class="form-group">
-            <label for="messageEnvoyer">Message</label>
-            <textarea name="messageEnvoyer" class="form-control" id="messageEnvoyer" rows="4" required></textarea>
         </div>
+    </div>
+    <!-- Fin contenu principal -->
 
-        <div class="form-group">
-            <label for="piecesJointes">Upload File</label>
-            <input type="file" name="piecesJointes" id="piecesJointes" class="form-control">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Send</button>
-    </form>
 </div>
+<!-- Fin conteneur principal -->
 
+<script> function toggleSidebar() {
+      document.getElementById('sidebare').classList.toggle('collapsed');
+    }</script>
 
-
-</x-baselayout>
-</x-app-layout>
+</body>
+</html>
