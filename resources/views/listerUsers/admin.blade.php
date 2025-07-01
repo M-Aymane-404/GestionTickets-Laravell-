@@ -19,7 +19,8 @@
 
                     <td>{{ $assistant->lastName }}</td>
                     <td>{{ $assistant->leNbTicketAssignee() }}</td>
-                    <td><form action="{{ route('user.delete',$assistant) }}" method="POST">
+                    <td>
+                        <form action="{{ route('user.delete',$assistant) }}" method="POST">
                          @csrf
 
                         @method('DELETE')
@@ -32,6 +33,7 @@
     </table>
 </div>
 <hr>
+
 <div class="container">
     <table class="table table-striped">
         <thead>
@@ -47,9 +49,11 @@
 
                     <td>{{ $client->lastName }}</td>
                     <td>{{ $client->leNbTicketdemander() }}</td>
-                    <td><form action="{{ route('user.delete',$client) }}" method="POST">  @csrf
+                    <td><form action="{{ route('user.delete',$client) }}" method="POST">
+                          @csrf
 
-                        @method('DELETE')<button type="submit">delete</button></form></td>
+                        @method('DELETE')
+                        <button type="submit">delete</button></form></td>
                 </tr>
             @endforeach
         </tbody>

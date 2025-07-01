@@ -172,39 +172,62 @@ if (auth()->user() && auth()->user()->type === 'admin') {
 
     public function addUser(){
 
+    if (auth()->user() && auth()->user()->type === 'admin') {
 
         return view ('adduser.admin ');
+        }elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'assistant'){
+        return redirect('assistant/dashboard');
+    }
     }
 
     public function storeUser(StoreUserRequest $request){
 
+        if (auth()->user() && auth()->user()->type === 'admin') {
         $user = User::create($request->validated());
 
         return  redirect()->route('dashboard.admin');
+        }elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'assistant'){
+        return redirect('assistant/dashboard');
+    }
     }
 
 
         public function assistantTicket(){
+            if (auth()->user() && auth()->user()->type === 'admin') {
         $assistants = User::where('type','assistant')->get();
                 $clients = User::where('type','client')->get();
 
          return view('listerUsers.admin',compact('assistants','clients'));
+         }elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'assistant'){
+        return redirect('assistant/dashboard');
+    }
         }
 
 
 
-   public function destroyUser(User $user)
+public function destroyUser(User $user)
 {
-     $tickets = Ticket::where('assignee', $user->email)
-                    ->orWhere('demandeur', $user->email)
-                    ->delete();
-
-
+    if (auth()->user() && auth()->user()->type === 'admin') {
+     Ticket::where('assignee', $user->email)
+          ->orWhere('demandeur', $user->email)
+          ->delete();
 
      $user->delete();
 
-     return redirect()->route('listerUsers.admin');
+    return redirect()->route('listerUsers.admin');
+    }elseif (auth()->user() && auth()->user()->type === 'client'){
+        return redirect('client/dashboard');
+    }elseif (auth()->user() && auth()->user()->type === 'assistant'){
+        return redirect('assistant/dashboard');
+    }
 }
+
 
 
 
