@@ -36,7 +36,7 @@ require __DIR__.'/auth.php';
     ->group(function () {
         Route::get('dashboard', [clientController::class, 'index'])->name('dashboard.client');
         Route::get('ticket/{ticket}', [clientController::class, 'ticketDetails'])->name('ticketDetails.client');
-        Route::post('storeMessage/{ticket}', [clientMessageController::class, 'commenteStore'])->name('storeMessage');
+        Route::post('storeMessage/{ticket}', [clientMessageController::class, 'commenteStores'])->name('storeMessages');
         Route::get('create/ticket', [clientController::class, 'create'])->name('createTicket.client');
         Route::post('create/ticket', [clientController::class, 'store'])->name('ticketStore');
 
@@ -55,8 +55,8 @@ require __DIR__.'/auth.php';
     ->group(function () {
         Route::get('dashboard', [assistantController::class, 'index'])->name('dashboard.assistant');
         Route::get('ticket/{ticket}', [assistantController::class, 'ticketDetails'])->name('ticketDetails.assistant');
-        Route::post('storeMessage/{ticket}', [assistantMessageController::class, 'commenteStore'])->name('storeMessage');
-        Route::patch('updateEtat/{ticket}', [assistantController::class, 'updateEtat'])->name('updateEtat.assistant');
+        Route::post('storeMessage/{ticket}', [assistantMessageController::class, 'commenteStoreAssistant'])->name('storeMessageAssistant');
+        Route::patch('updateEtat/{ticket}', [assistantController::class, 'updateEtats'])->name('updateEtats.assistant');
 
 
 

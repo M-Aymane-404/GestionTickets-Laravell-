@@ -55,7 +55,7 @@ class assistantController extends Controller
 
 
 
-    public function updateEtat( Ticket $ticket){
+    public function updateEtats( Ticket $ticket){
         if (auth()->user() && auth()->user()->type === 'assistant'){
         $barre_etat = BarreEtat::Where('ticket_id',$ticket->id)->first();
 

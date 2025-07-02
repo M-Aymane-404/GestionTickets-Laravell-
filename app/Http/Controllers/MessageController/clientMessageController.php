@@ -15,7 +15,7 @@ class clientMessageController extends Controller
 
 
 
-      public function commenteStore(StoreCommentRequest $request,Ticket $ticket)
+      public function commenteStores(StoreCommentRequest $request,Ticket $ticket)
     {
 
 
@@ -27,7 +27,7 @@ class clientMessageController extends Controller
      $messageData = array_merge($request->validated(), [
         'emetteur' => auth()->user()->lastName,
         'ticket_id' => $ticket->id,
-        'piecesJointes' => $piecesJointes,  
+        'piecesJointes' => $piecesJointes,
     ]);
 
     $message = Message::create($messageData);

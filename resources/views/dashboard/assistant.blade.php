@@ -1,36 +1,102 @@
-<x-app-layout>
-<x-baselayout>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="{{ asset('css/assistant/dashbord.css') }}">
+     <title>Gestion de Tickets</title>
 
-    <div class="container">
-    <h1>bienvenu {{ $assistant }}</h1>
 
-    </div>
-<div class="container">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
 
-                <th scope="col">Demandeur</th>
-                <th scope="col">Date</th>
-                <th scope="col">Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($tickets as $ticket)
-                <tr>
-                    <td> <a href="{{ route('ticketDetails.assistant',$ticket) }} ">{{ $ticket->titre }}</a></td>
-                    <td>{{ \Illuminate\Support\Str::limit($ticket->description, 50) }}</td>
-                     <td>{{ $ticket->leNomdemandeur()}}</td>
 
-                    <td>{{ $ticket->date }}</td>
-                    <td>{{ $ticket->etat }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+</head>
+<body>
+
+         <div class="row layout m-0 p-0   "  >
+                <div id="sidebare" class="sidebare d-flex flex-column    col-2  ">
+                    <div class="button">
+                         <button class="toggle-btn"  onclick="toggleSidebar()">⇄</button>
+                    </div>
+                <div class="  logo  ">
+                   <img src="{{ asset('img/logo.png') }}" alt="" width="70px">
+                </div>
+                 <div class="hide dashbord mt-4 ">
+                    <a href="{{ route('dashboard.assistant') }}"><i class="fas fa-chart-line me-2"></i> Dashboard</a>
+                </div>
+
+
+
+                      <div class=" hide">
+                    <a href="{{ route('profile.edit') }}"><i class="fas fa-user-circle me-2 "></i> Profile</a>
+                </div>
+                  <div class="hide">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); this.closest('form').submit();">
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        </a>
+                        </form>
+                </div>
+
+            </div>
+
+
+        <div class="  content col   ">
+
+
+
+
+<div class="col d-flex mt-5 justify-content-center">
+
+             <div class="row thead col-10 mt-2  align-items-center   fw-bold     py-2">
+    <div class="col">Title</div>
+    <div class="col-4 description">Description</div>
+    <div class="col">Demandeur</div>
+    <div class="col date">Date</div>
+    <div class="col">Status</div>
+    <div class="col">Action</div>
 </div>
 
-</x-baselayout>
-</x-app-layout>
+</div>
+
+<div class="col d-flex justify-content-center">
+            <div  class="tickets-scroll col-10 mt-3">
+            @foreach ($tickets as $ticket)
+
+                 <div class="row ticket  mt-2 d-flex     justify-content-evenly   ">
+                    <div class="col d-flex align-items-center ">{{ $ticket->titre }}</div>
+                    <div class="col-4 d-flex align-items-center description">{{ \Illuminate\Support\Str::limit($ticket->description, 50) }}</div>
+                    <div class="col d-flex align-items-center">{{ $ticket->leNomdemandeur()}}</div>
+                    <div class="col d-flex align-items-center date">{{ $ticket->created_at }}</div>
+                    <div class="col d-flex align-items-center"><p class="mb-0">{{ $ticket->etat }}</p></div>
+                    <div class="col d-flex align-items-center view"><a href="{{ route('ticketDetails.assistant',$ticket) }} ">view</a></div>
+
+                </div>
+                <div class="carte  ">
+                <div class="col d-flex  align-items-center justify-content-center "><strong>Title   </strong>: {{ $ticket->titre }}</div>
+                <div class="col d-flex align-items-center justify-content-center "><strong>Demandeur  </strong>:{{ $ticket->leNomdemandeur()}}</div>
+                <div class="col d-flex align-items-center  justify-content-center view"><strong>Action    </strong>: <a style="  margin-left :10px; " href="{{  route('ticketDetails.assistant',$ticket) }}">view</a></div>
+
+                </div>
+            @endforeach
+
+            </div>
+
+        </div>
+
+
+
+
+</div>
+        </div>
+        </div>
+<script> function toggleSidebar() {
+      document.getElementById('sidebare').classList.toggle('collapsed');
+    }</script>
+
+</body>
+</html>

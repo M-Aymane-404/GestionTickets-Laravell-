@@ -15,7 +15,7 @@ class assistantMessageController extends Controller
 
 
 
-      public function commenteStore(StoreCommentRequest $request,Ticket $ticket)
+      public function commenteStoreAssistant(StoreCommentRequest $request,Ticket $ticket)
     {
 
 
