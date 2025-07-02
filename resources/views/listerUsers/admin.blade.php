@@ -51,64 +51,73 @@
 
         <div class="  content col    ">
 
-<div class="row">
+<div class="row twoTable d-flex justify-content-evenly mt-5">
 
-            <div class=" users-scroll col container">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th class="col">assistant</th>
-                <th class="col">nombre de ticket</th>
-                <th class="col">supprimer</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($assistants as $assistant)
-                <tr>
+           <div class=" bg-white   col-6">
+         <div class="row col thead ">
 
-                    <td>{{ $assistant->lastName }}</td>
-                    <td>{{ $assistant->leNbTicketAssignee() }}</td>
-                    <td>
-                        <form action="{{ route('user.delete',$assistant) }}" method="POST">
-                         @csrf
+                <div class="col-2">client</div>
+                <div class="col mail">email</div>
 
-                        @method('DELETE')
-                        <button type="submit">delete</button>
-                    </form>
-                </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-
-<div class="container users-scroll col">
-    <div class="table table-striped">
-        <div class="row">
-
-                <div class="col">client</div>
-                <div class="col">nombre de ticket</div>
-                <div class="col">supprimer</div>
+                <div class="col-3">nombre de ticket</div>
+                <div class="col-2">supprimer</div>
 
         </div>
-        <div class="">
+        <div class="users-scroll col">
             @foreach ($clients as $client)
-                <div class="row">
+                <div class="row tbody">
 
-                    <div class="col">{{ $client->lastName }}</div>
-                    <div class="col">{{ $client->leNbTicketdemander() }}</div>
-                    <div class="col"><form action="{{ route('user.delete',$client) }}" method="POST">
+                    <div class="col-2">{{ $client->lastName }}</div>
+                                        <div class="col mail">{{ $client->email }}</div>
+
+                    <div class="col-3">{{ $client->leNbTicketdemander() }}</div>
+                    <div class="col-2"><form action="{{ route('user.delete',$client) }}" method="POST">
                           @csrf
 
                         @method('DELETE')
                         <button type="submit">delete</button></form></div>
                 </div>
             @endforeach
+
+
         </div>
-    </div>
-</div>
+ </div>
+
+
+           <div class=" bg-white   col-6">
+         <div class="row col thead ">
+
+                <div class="col-2">assistant</div>
+                <div class="col mail">email</div>
+
+                <div class="col-3">nombre de ticket</div>
+                <div class="col-2">supprimer</div>
+
+        </div>
+        <div class="users-scroll col">
+            @foreach ($assistants as $assistant)
+                <div class="row tbody">
+
+                    <div class="col-2">{{ $assistant->lastName }}</div>
+                                        <div class="col mail">{{ $assistant->email }}</div>
+
+                    <div class="col-3">{{ $assistant->leNbTicketAssignee() }}</div>
+                    <div class="col-2"><form action="{{ route('user.delete',$assistant) }}" method="POST">
+                          @csrf
+
+                        @method('DELETE')
+                        <button type="submit">delete</button></form></div>
+                </div>
+            @endforeach
+
+
+        </div>
 
 </div>
+
+
+
+
 
         </div>
         </div>
