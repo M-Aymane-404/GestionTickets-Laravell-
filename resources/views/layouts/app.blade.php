@@ -16,18 +16,17 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <style>
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+    </style>
+    <body class="font-sans antialiased" >
+        <div class="min-h-screen" style="     background-color: #dce3e7;">
+            <div class="col  d-flex align-items-center justify-content-end">
+<div class="col-2  mt-4 d-flex align-items-center justify-content-start" style="height: 50px;">
+  <a href="{{ route('dashboard.admin') }}" class="btn btn-dark ">Dashboard</a>
+</div>
+</div>
+
 
             <!-- Page Content -->
             <main>
