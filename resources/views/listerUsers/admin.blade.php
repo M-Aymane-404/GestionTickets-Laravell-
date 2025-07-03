@@ -41,7 +41,7 @@
                         @csrf
                         <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); this.closest('form').submit();">
-                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                            <i class="fas fa-sign-out-alt me-2"></i> déconnexion
                         </a>
                         </form>
                 </div>
@@ -75,7 +75,7 @@
                           @csrf
 
                         @method('DELETE')
-                        <button type="submit">delete</button></form></div>
+                        <button type="submit">🗑</button></form></div>
                 </div>
             @endforeach
 
@@ -106,7 +106,7 @@
                           @csrf
 
                         @method('DELETE')
-                        <button type="submit">delete</button></form></div>
+                        <button type="submit">🗑</button></form></div>
                 </div>
             @endforeach
 

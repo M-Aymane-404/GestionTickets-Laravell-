@@ -44,7 +44,7 @@
                         @csrf
                         <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); this.closest('form').submit();">
-                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                            <i class="fas fa-sign-out-alt me-2"></i> déconnexion
                         </a>
                         </form>
                 </div>
@@ -87,10 +87,7 @@
             </div>
 
             <!-- Image -->
-            <div class="mb-3">
-                <label for="image" class="form-label">Image (facultatif)</label>
-                <input type="file" class="form-control" id="image" name="image">
-            </div>
+
 
             <!-- Email -->
             <div class="mb-3">
@@ -101,7 +98,7 @@
             <!-- Password -->
             <div class="mb-3">
                 <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="text" class="form-control" id="password" name="password" required>
             </div>
             <div class="col  d-flex justify-content-center">
             <!-- Submit -->

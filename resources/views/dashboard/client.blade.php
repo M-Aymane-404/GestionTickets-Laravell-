@@ -39,7 +39,7 @@
                         @csrf
                         <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); this.closest('form').submit();">
-                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                            <i class="fas fa-sign-out-alt me-2"></i> déconnexion
                         </a>
                         </form>
                 </div>
@@ -75,8 +75,18 @@
                     <div class="col-4 d-flex align-items-center description">{{ \Illuminate\Support\Str::limit($ticket->description, 50) }}</div>
                     <div class="col d-flex align-items-center assistant">{{ $ticket->leNomAssistant()}}</div>
                     <div class="col d-flex align-items-center">{{ $Demandeur->firstName }}</div>
-                    <div class="col d-flex align-items-center date">{{ $ticket->created_at }}</div>
-                    <div class="col d-flex align-items-center"><p class="mb-0">{{ $ticket->etat }}</p></div>
+                    <div class="col d-flex align-items-center date">{{ \Carbon\Carbon::parse($ticket->created_at)->format('d M Y') }}</div>
+                    <div class="col d-flex align-items-center">
+                        @if ($ticket->etat == 'nouveau')
+                     <p class="nv mb-0">{{ $ticket->etat }}</p>
+                    @elseif ($ticket->etat == 'enCours')
+                     <p class="ec mb-0">{{ $ticket->etat }}</p>
+                    @elseif ($ticket->etat == 'traiter')
+                     <p class="tr mb-0">{{ $ticket->etat }}</p>
+                     @else
+                     <p class="fr mb-0">{{ $ticket->etat }}</p>
+                     @endif
+                    </div>
                     <div class="col d-flex align-items-center view"><a href="{{ route('ticketDetails.client',$ticket) }}">view</a></div>
 
                 </div>
