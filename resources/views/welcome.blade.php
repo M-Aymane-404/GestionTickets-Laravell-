@@ -17,9 +17,9 @@
 
 <div>
      @if (Route::has('login'))
-    <div class=" mt-3 d-flex justify-content-end">
+    <div class=" mt-3 d-flex justify-content-end ">
         @auth
-            <a href="{{ url('client/dashboard') }}">dashbord</a>
+            <a href="{{ url('client/dashboard') }}" class="dashbord"    >tableau de bord</a>
         @else
         <a href="{{ route('login') }}">Connexion</a>
             @if (Route::has('register'))
@@ -37,10 +37,10 @@
 
 
 
-    <div class="col-12   textAndImg row mt-4 justify-content-evenly p-0 m-0 " style="background-color: #e3f0d2">
+    <div class="col-12   textAndImg row mt-4 justify-content-evenly p-0 m-0 " style="background-color: #dbdaea">
 
-        <div class=" title col-5 ">
-             <h1>Gestion des Tickets</h1>
+        <div class=" title col-6 ">
+             <h1 class=" text-center">Gestion des Tickets</h1>
             <p class="text-center">
             Bienvenue sur votre plateforme de gestion d’assistance, conçue pour simplifier le suivi, le traitement et la résolution des demandes en quelques clics.
             </p>
@@ -48,14 +48,12 @@
 
 
             <div class="d-flex mt-4  justify-content-center">
-            <a href="{{ route('register') }}"> commencer un essai</a>
+            <a href="{{ route('addFirstAdmin') }}" class="firstAdmin">   cree le premier Admin</a>
             </div>
 
 
         </div>
-        <div class=" img col-5 ">
-            <img src="{{ asset('img/image.png') }}" class=" d-flex justify-content-center"     alt="" height="70%">
-        </div>
+
 
 
 

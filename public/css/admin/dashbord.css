@@ -1,4 +1,268 @@
- body {
+
+    .navBar{
+        width: 100vw;
+        background-color: #ffffff;
+        height: 7vh;
+        padding-bottom: 100px;
+        border-bottom: solid 2px #e7e9ed;
+    }
+
+
+.navBar a{
+     display: inline-block;
+     width: fit-content;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: #000;
+  text-decoration: none;
+  padding: 10px;
+
+}
+.navBar a:hover{
+    background-color: #e7e9ed;
+    border-radius: 5px;
+
+}
+    .navBar .right{
+        display: flex;
+        justify-content: center;
+
+    }
+        .navBar .left{
+            display: flex;
+            justify-content: center;
+
+    }
+
+    .navBarMobile{
+        border: #e7e9ed solid 3px;
+        width: 65vw;
+        height: 95vh;
+        background-color: #ffffff;
+        position: absolute;
+        top: 29px;
+        display: none;
+
+
+
+    }
+     .navBarMobile a{
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px;
+            width: 100%;
+     color: black;
+    }
+    .navBarMobile a:hover{
+    background-color: #e7e9ed;
+    border-radius: 5px;
+
+}
+.button{
+
+    display: none;
+}
+.button button{
+    background-color: #714b67;
+    border: solid #714b67;
+    color: white;
+ }
+
+.collapsed{
+    display: block !important;
+}
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+    }
+    td {
+      padding: 7px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+       font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14.5px;
+  font-weight: 400;
+    }
+     th {
+      padding: 10px;
+      border: 1px solid #ddd;
+      background-color: #f9fafb;
+      text-align: left;
+      height: 5vh;
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;}
+
+.status-nouveau {
+  color: #6c757d;
+ background-color:#6c757d ;
+  border: #6c757d solid ;
+  display: inline-block;
+  border-radius:50px 50px 50px 50px;
+  width: 12px;
+  height: 12px; /* Vert => Résolu avec succès */
+  font-weight: 600;}
+
+.status-encours {
+  color: #007bff; /* Bleu vif */
+ background-color:#007bff ;
+  border: #007bff solid ;
+  display: inline-block;
+  border-radius:50px 50px 50px 50px;
+  width: 12px;
+  height: 12px; /* Vert => Résolu avec succès */
+  font-weight: 600;}
+
+.status-traites {
+  color: #fd7e14; /* Orange */
+  background-color:#fd7e14 ;
+  border: #fd7e14 solid ;
+  display: inline-block;
+  border-radius:50px 50px 50px 50px;
+  width: 12px;
+  height: 12px; /* Vert => Résolu avec succès */
+  font-weight: 600;
+}
+
+.status-ferme {
+
+  color: #28a745;
+  background-color:#28a745 ;
+  border: #28a745 solid ;
+  display: inline-block;
+  border-radius:50px 50px 50px 50px;
+  width: 12px;
+  height: 12px; /* Vert => Résolu avec succès */
+  font-weight: 600;
+}
+
+tr:hover{
+    background-color: #e7e9ed;
+}
+
+.statistic div{
+    border: solid #714b67 ;
+    background-color:#714b67 ;
+    color: white;
+    width: 15vw;
+    height: 14vh;
+    border-radius: 5px;
+     align-items: center;
+     align-content: center;
+     text-align: center;
+      padding: 10px;
+}
+
+.statistic div:hover{
+    border: solid #52374b ;
+    background-color:#52374b ;
+}
+
+.form-control{
+    width: 40vw;
+}
+.searchBtn{
+        width: 7vw;
+         border: solid #52374b ;
+    background-color:#52374b ;
+    border-radius: 3px;
+    color: white;
+
+}
+.searchInput{
+    width: 40vw;
+    height: 4.5vh;
+    border: #969696 solid 2px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.table{
+    overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+}
+@media (max-width:  914px) {
+.searchBtn{
+        width: 10vw;
+
+
+}
+.statistic div{
+
+    width: 20vw;
+
+}
+
+
+
+}
+
+
+@media (max-width: 645px) {
+    .navBar{
+        display: none !important;
+    }
+    .button{
+    display: block;
+}
+
+
+.searchBtn{
+        width: 12vw;
+
+
+}
+
+
+}
+
+
+@media (max-width: 562px) {
+
+.statistic div{
+
+    width: 22vw;
+
+}
+
+.searchBtn{
+        width: 14vw;
+
+
+}
+.searchInput{
+    width: 50vw;
+ }
+
+
+}
+@media (max-width: 460px) {
+
+.statistic div{
+
+    width: 25vw;
+
+}
+
+.searchBtn{
+        width: 18vw;
+
+
+}
+.searchInput{
+    width: 56vw;
+ }
+
+
+}
+
+
+
+/* body {
       margin: 0;
       padding: 0;
       display: flex;
@@ -300,3 +564,4 @@ background-color: #5fa8bb;
 
 
 
+*/

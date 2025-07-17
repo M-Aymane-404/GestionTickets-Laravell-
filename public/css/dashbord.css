@@ -6,8 +6,8 @@ body{
 a{
     text-decoration: none;
     display: inline-block;
-    border: solid #10323a;
-    background-color: #10323a;
+    border: solid #714b67;
+    background-color: #714b67;
     color: white;
     width: 100px;
     height: 32px;
@@ -47,9 +47,13 @@ display: flex;
 
 }
 
+.dashbord{
+    width: 150px ;
+}
+
 @media (max-width: 1246px) {
    .title{
-    width: 40%;
+    width: 70%;
 
    }
    .img{
@@ -59,7 +63,7 @@ display: flex;
    }
    img{
     height: 80%;
-    width: 80%;
+    width: 70%;
    }
    h1{
     font-size: 100px;

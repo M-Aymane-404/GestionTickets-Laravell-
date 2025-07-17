@@ -16,13 +16,13 @@ class Ticket extends Model
   public function leNomAssistant(){
         $email =  User::where('email', $this->assignee)->first();
 
-        return $email ? $email->lastName : 'attender un assistant pour traiter votre demande';
+        return $email ? $email->lastName .' ' .$email->firstName : 'attender un assistant pour traiter votre demande';
 
     }
       public function leNomdemandeur(){
         $email =  User::where('email', $this->demandeur)->first();
 
-        return $email ? $email->lastName : 'inconnue';
+        return $email ? $email->lastName .' ' .$email->firstName : 'inconnue';
 
     }
 
@@ -48,5 +48,22 @@ class Ticket extends Model
 
     }
 
+
+
+         public function ledelaiDefermetureEnSeconde(){
+        $ticket = Ticket::where('id', $this->id)->first();
+        $barre_etat = BarreEtat::where('ticket_id', $ticket->id)->first();
+
+        if ($ticket->etat == 'fermer' && $barre_etat->date_fermer) {
+            $dateCreation = Carbon::parse($barre_etat->created_at);
+            $dateFermeture = Carbon::parse($barre_etat->date_fermer);
+
+            $dureeEnSecondes = $dateFermeture->diffInSeconds($dateCreation);
+
+            return $dureeEnSecondes; // nombre total de secondes entre les deux dates
+        } else {
+            return 'Le ticket n’est pas fermé';
+        }
+    }
 
 }

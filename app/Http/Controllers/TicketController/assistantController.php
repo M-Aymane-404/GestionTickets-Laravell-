@@ -5,11 +5,14 @@ use App\Models\Ticket;
 use App\Models\User;
 use App\Models\Message;
 use App\Models\BarreEtat;
+use Illuminate\Support\Facades\DB;
+
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\StoreTicketRequest;
+use Carbon\Carbon;
 
 
 class assistantController extends Controller
@@ -27,7 +30,10 @@ class assistantController extends Controller
         $assistant = auth()->user()->firstName;
 
 
-        return view('dashboard.assistant', compact('tickets','assistant'));}
+
+
+
+        return view('dashboard.assistant', compact('tickets','assistant')  );}
     elseif (auth()->user() && auth()->user()->type === 'client'){
         return redirect('client/dashboard');
     }elseif (auth()->user() && auth()->user()->type === 'admin'){
@@ -79,6 +85,25 @@ class assistantController extends Controller
     }
 
     }
+
+
+    public function statistic( Request $request ){
+         $dateDebut = $request->input('datedebut');
+         $dateFin = $request->input('datefin');
+
+
+
+    $nbTicketsParEtat = Ticket::select('etat', DB::raw('count(*) as total'))
+        ->where('assignee', auth()->user()->email)
+        ->whereBetween('created_at', [$dateDebut, $dateFin])
+        ->groupBy('etat')
+        ->get();
+
+       return view('statistic.assistant', compact('nbTicketsParEtat' )  );
+
+    }
+
+
 
 
 

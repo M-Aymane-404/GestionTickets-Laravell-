@@ -11,7 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\StoreUserRequest;
-
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class adminController extends Controller
 {
@@ -30,12 +31,12 @@ $search = $request->input('searchTerm');
 
 
 $assistants = User::where([
-                        ['lastName', 'LIKE', '%' . $search . '%'],
+
                         ['type','assistant']
                             ])->get();
 
 $demandeurs = User::where([
-                        ['lastName', 'LIKE', '%' . $search . '%'],
+
                         ['type','client']
                             ])->get();
 
@@ -72,7 +73,9 @@ $demandeurs = User::where([
 
   public function ticketDetails(Ticket $ticket){
     if (auth()->user() && auth()->user()->type === 'admin') {
-         $messages = Message::where('ticket_id',$ticket->id)->get();
+         $messages = Message::where('ticket_id',$ticket->id)
+         ->orderBy('created_at', 'desc')
+         ->get();
         $assistant = auth()->user()->lastName;
         $barre_etat = BarreEtat::where('ticket_id',$ticket->id)->first();
 
@@ -129,14 +132,14 @@ if (auth()->user() && auth()->user()->type === 'admin') {
     }
     }
 
-    public function updateTicket(StoreTicketRequest $request,Ticket $ticket){
+    public function updateTicket(Request $request,Ticket $ticket){
         if (auth()->user() && auth()->user()->type === 'admin') {
 
          $piecesJointes = null;
     if ($request->hasFile('piecesJointes') && $request->file('piecesJointes')->isValid()) {
          $piecesJointes = $request->file('piecesJointes')->store('uploads', 'public');
     }
-        $ticket->update([[$request->validated()], 'etat' => $request->input('etat'),'assignee' => $request->input('assignee'), 'piecesJointes' => $piecesJointes,]);
+        $ticket->update([  'titre' => $request->input('titre'),'description' => $request->input('description'),'piecesJointes' => $request->input('piecesJointes'), 'etat' => $request->input('etat'),'assignee' => $request->input('assignee'), 'piecesJointes' => $piecesJointes,]);
 
         return redirect()->route('ticketDetails.admin',$ticket);
          }
@@ -187,13 +190,53 @@ if (auth()->user() && auth()->user()->type === 'admin') {
         if (auth()->user() && auth()->user()->type === 'admin') {
         $user = User::create($request->validated());
 
-        return  redirect()->route('dashboard.admin');
+        return  redirect()->route('listerUsers.admin');
         }elseif (auth()->user() && auth()->user()->type === 'client'){
         return redirect('client/dashboard');
     }elseif (auth()->user() && auth()->user()->type === 'assistant'){
         return redirect('assistant/dashboard');
     }
     }
+
+
+
+
+
+
+
+
+
+ public function addFirstAdmin(){
+  $NbAdmin = User::where([
+
+                        ['type','admin']
+                            ])->count();
+
+        return view ('adduser.FirstAdmin ',compact('NbAdmin'));
+
+    }
+
+    public function storeFirstAdmin(StoreUserRequest $request){
+       $NbAdmin = User::where([
+
+                        ['type','admin']
+                            ])->count();
+if($NbAdmin == 0){
+
+    $user = User::create($request->validated());
+}
+
+
+        return  redirect()->route('welcome');
+
+    }
+
+
+
+
+
+
+
 
 
         public function assistantTicket(){
@@ -229,8 +272,49 @@ public function destroyUser(User $user)
 }
 
 
+public function statistcs() {
+    $assistants = Ticket::whereNotNull('assignee')
+        ->where('etat', 'fermer')
+        ->pluck('assignee')
+        ->unique();
 
+    $stats = [];
 
+    foreach ($assistants as $assignee) {
+        $tickets = Ticket::where('assignee', $assignee)
+            ->where('etat', 'fermer')
+            ->get();
 
+        $totalSeconds = 0;
+        $count = 0;
+
+        foreach ($tickets as $ticket) {
+            $barre_etat = BarreEtat::where('ticket_id', $ticket->id)->first();
+
+            if ($barre_etat && $barre_etat->date_fermer) {
+                $start = Carbon::parse($barre_etat->created_at);
+                $end = Carbon::parse($barre_etat->date_fermer);
+
+                $duration = $start->diffInSeconds($end, false);
+
+                // Ignorer les durées négatives ou excessives (> 7 jours)
+                if ($duration >= 0 && $duration < 7 * 24 * 3600) {
+                    $totalSeconds += $duration;
+                    $count++;
+                }
+            }
+        }
+
+        // ✅ Ne divise que si au moins un ticket est comptabilisé
+$avgMinutes = $count > 0 ? round($totalSeconds / $count / 60, 2) : 0;
+
+      $stats[] = [
+    'assistant' => $assignee,
+    'avg_closing_time_minutes' => $avgMinutes
+];
+    }
+
+    return view('statistic.admin', compact('stats'));
+}
 
 }

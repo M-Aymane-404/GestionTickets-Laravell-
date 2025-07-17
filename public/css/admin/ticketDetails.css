@@ -1,4 +1,387 @@
- body {
+
+    .navBar{
+        width: 99vw;
+        background-color: #ffffff;
+        height: 7vh;
+        padding-bottom: 100px;
+        border-bottom: solid 2px #e7e9ed;
+    }
+
+
+.navBar a{
+     display: inline-block;
+     width: fit-content;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: #000;
+  text-decoration: none;
+  padding: 10px;
+
+}
+.navBar a:hover{
+    background-color: #e7e9ed;
+    border-radius: 5px;
+
+}
+    .navBar .right{
+        display: flex;
+        justify-content: center;
+
+    }
+        .navBar .left{
+            display: flex;
+            justify-content: center;
+
+    }
+
+    .navBarMobile{
+        border: #e7e9ed solid 3px;
+        width: 65vw;
+        height: 95vh;
+        background-color: #ffffff;
+        position: absolute;
+        top: 29px;
+        display: none;
+
+
+
+    }
+     .navBarMobile a{
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px;
+            width: 100%;
+     color: black;
+    }
+    .navBarMobile a:hover{
+    background-color: #e7e9ed;
+    border-radius: 5px;
+
+}
+.button{
+
+    display: none;
+}
+.button button{
+    background-color: #714b67;
+    border: solid #714b67;
+    color: white;
+ }
+
+.collapsed{
+    display: block !important;
+}
+.etatButton{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    align-content: center;
+}
+
+.etatButton div{
+    width: 7vw;
+    border: solid gray 0.5px;
+    background-color: #e7e9ed;
+    height: 4.5vh;
+    text-align: center;
+    margin-right: 2px;
+      display: flex;
+     align-items: center;
+    align-content: center;
+    justify-content: center;
+                  border-radius: 0px 7px 7px  0px;
+
+
+
+}
+
+
+.etatButton button{
+    width: 7vw;
+    border: solid gray 1px;
+    background-color: #e7e9ed;
+    height: 4.5vh;
+    text-align: center;
+    margin-right: 2px;
+                  border-radius: 0px 7px 7px  0px;
+
+
+
+}
+.etatButton button:hover{
+    background-color: #d8dadd;
+}
+.etatButton div:hover{
+    background-color: #d8dadd;
+}
+
+.buttonSeleceted{
+    background-color: #e6f2f3 !important;
+    border: solid #017e84 !important;
+
+
+}
+
+.piece{
+    text-decoration:  none;
+    display: inline-block;
+    color: white ;
+         border: solid #d23f3a 1px ;
+  background-color: #d23f3a;
+    width: fit-content;
+    border-radius: 5px;
+
+}
+.ticketinfo{
+    border: solid gray 1px;
+    border-radius: 5px;
+}
+.description span{
+    display: inline-block;
+        font-style: normal;
+    font-weight:700;
+    height: 5vh;
+    align-content: center;
+
+
+}
+.description p{
+    border-top:solid gray 2px;
+}
+.description span{
+    border: solid gray 2px ;
+    width: fit-content;
+ }
+ .ticketinfo h1{
+    font-style: normal;
+    font-weight:450;
+  }
+  .ticketinfo .info p span{
+     font-style: normal;
+    font-weight:570;
+
+  }
+  .etatTime ul li span{
+    font-style: normal;
+    font-weight:570;
+  }
+  .envoyerMessage{
+    display: none;
+  }
+  .showEnvoyerMessage{
+    display: block !important;
+  }
+
+.userAndMessage .user{
+       font-style: normal;
+    font-weight:650;
+
+
+}
+.message .date {
+       font-style: normal;
+    font-weight:400;
+    font-size: small;
+
+
+}
+.userAndMessage .message p {
+  border: solid #c0e8ca 1px ;
+  background-color: #e0f4e5;
+  width: fit-content;
+  border-radius: 7px;
+  padding: 10px;
+
+
+}
+.envoyerButton{
+    color: #714e6c  !important;
+    border: solid #714e6c 1px  !important;
+    background-color: #f1edf0 !important;
+    width: fit-content;
+    border-radius: 3px;
+    font-style: normal;
+    font-weight:500;
+    font-size: 15px;
+    padding: 4px 6px 4px 6px;
+
+}
+
+.pieceMessage a{
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+      border: solid #d23f3a 1px ;
+  background-color: #d23f3a;
+  width:170px;
+  text-align: center;
+  border-radius: 6px;
+
+
+}
+ .custom-file-label {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 24px;
+    color: #555;
+  }
+
+   #piecesJointes {
+    display: none;
+  }
+  .envoyer{
+    color: white ;
+    border: solid #714b67 ;
+    background-color: #714b67;
+    width: fit-content;
+    border-radius: 3px;
+    font-style: normal;
+    font-weight:500;
+    font-size: 15px;
+    padding: 4px 6px 4px 6px;
+
+  }
+  .messages{
+    height: 70vh;
+    }
+  .inputmessage{
+    height: 30vh;
+
+  }
+  .message-scroll {
+   overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+
+
+   scrollbar-width: thin;
+  scrollbar-color: #888 #f0f0f0;
+}
+.edit a{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    border: solid #714b67 ;
+    background-color: #714b67;
+            padding: 5px 8px 5px 8px ;
+            border-radius: 4px;
+
+}
+.delete button{
+        border: solid red;
+            background-color: red;
+            padding: 5px 8px 5px 8px ;
+             border-radius: 4px;
+             color: white;
+
+
+
+}
+.edit a:hover{
+
+    color: #714b67;
+    border: solid #714b67 ;
+    background-color: white;
+
+}
+.delete button:hover{
+        border: solid red;
+            background-color: white;
+
+             color: red;
+
+
+
+}
+
+@media (max-width:  1231px) {
+
+.twoDiv{
+    display: flex;
+    flex-direction: column ;
+}
+.ticket{
+    width: 99vw;
+}
+.comment{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+        width:70vw ;
+
+}
+.messageInput{
+            width:70vw ;
+            margin-left: 10vw;
+
+
+}
+.messages{
+      display: flex;
+    flex-direction: column;
+    justify-content: center;
+            width:90vw ;
+                        margin-left: 5vw;
+
+
+
+}
+.envoyerMessage{
+     justify-content: center;
+}
+
+.etatButton div , .etatButton .button{
+    width: 15vw;
+}
+
+
+}
+
+
+@media (max-width: 645px) {
+    .navBar{
+        display: none !important;
+    }
+    .button{
+    display: block;
+}
+
+
+
+
+}
+
+
+@media (max-width: 581px) {
+.etatButton div , .etatButton .button{
+    width: 20vw;
+}
+
+
+
+}
+@media (max-width: 434px) {
+.etatButton{
+    flex-direction: column;
+}
+.etatButton div , .etatButton .button{
+    width: 50vw;
+    margin-top: 5px;
+}
+
+
+}
+
+
+
+
+
+
+
+
+/* body {
       margin: 0;
       padding: 0;
       display: flex;
@@ -478,3 +861,4 @@ height: 100vh;
 
 
 
+*/

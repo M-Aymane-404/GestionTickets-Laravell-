@@ -1,146 +1,251 @@
- body {
-      margin: 0;
-      padding: 0;
-      display: flex;
+
+    .navBar{
+        width: 99vw;
+        background-color: #ffffff;
+        height: 7vh;
+        padding-bottom: 100px;
+        border-bottom: solid 2px #e7e9ed;
     }
-    .layout {
-  height: 100%;
- width: 100vw;
+
+
+.navBar a{
+     display: inline-block;
+     width: fit-content;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: #000;
+  text-decoration: none;
+  padding: 10px;
 
 }
-.sidebare{
-       background-color: #10323a;
-      color: white;
-      height: 100vh;
+.navBar a:hover{
+    background-color: #e7e9ed;
+    border-radius: 5px;
 
 }
-.sidebare div {
-    width: 100%;
-    height: 50px;
+    .navBar .right{
+        display: flex;
+        justify-content: center;
 
-}
-.sidebare div form {
-    width: 100%;
-    height: 50px;
-
-}
-.sidebare .logo {
-    margin-left: 30%;
-
-}
-.sidebare div a{
-             display: inline-block;
-             color: white;
-             width: 100%;
-            height: 100%;
+    }
+        .navBar .left{
             display: flex;
-            align-items: center;
-             padding-left: 25px;
-            text-decoration: none;
-            font-weight: 500;
- }
+            justify-content: center;
 
- .sidebare div a:hover {
-background-color: #5fa8bb;
- }
- .content{
-     background-color: #dce3e7;
+    }
 
-
-
-  }
+    .navBarMobile{
+        border: #e7e9ed solid 3px;
+        width: 65vw;
+        height: 95vh;
+        background-color: #ffffff;
+        position: absolute;
+        top: 29px;
+        display: none;
 
 
 
-.toggle-btn{
+    }
+     .navBarMobile a{
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px;
+            width: 100%;
+     color: black;
+    }
+    .navBarMobile a:hover{
+    background-color: #e7e9ed;
+    border-radius: 5px;
+
+}
+.button{
+
     display: none;
-
 }
+.button button{
+    background-color: #714b67;
+    border: solid #714b67;
+    color: white;
+ }
 
-
-
-.messages{
-    height: 100vh;
+.collapsed{
+    display: block !important;
 }
-.bareEtat{
-    margin-top: 10px;
-    margin-right: 5px;
+.etatButton{
+    display: flex;
+    justify-content: end;
     align-items: center;
+    align-content: center;
 }
-.columnEtat{
-    height: 31px;
-    border: 1px solid #10323a ;
-    background-color: whitesmoke;
+
+.etatButton div{
+    width: 7vw;
+    border: solid gray 0.5px;
+    background-color: #e7e9ed;
+    height: 4.5vh;
+    text-align: center;
+    margin-right: 2px;
+      display: flex;
+     align-items: center;
+    align-content: center;
+    justify-content: center;
+                  border-radius: 0px 7px 7px  0px;
+
+
 
 }
-.selectedEtat{
-    border: 1px solid whitesmoke;
-    background-color: #10323a;
-    color: whitesmoke;
-        height: 29px;
+
+
+.etatButton button{
+    width: 7vw;
+    border: solid gray 1px;
+    background-color: #e7e9ed;
+    height: 4.5vh;
+    text-align: center;
+    margin-right: 2px;
+                  border-radius: 0px 7px 7px  0px;
+
+
 
 }
-.carte{
-    margin-top: 10px;
+.etatButton button:hover{
+    background-color: #d8dadd;
 }
-.carte .title{
-    border:solid #10323a;
-    background-color: #10323a;
-    color: whitesmoke;
-    padding: 10px 10px 10px 20px  ;
-    border-radius: 20px 20px 0px 0px;
-    font-size: 22px;
+.etatButton div:hover{
+    background-color: #d8dadd;
 }
-.carte .contentCarte{
-    border:solid #10323a;
-    padding: 20px   ;
-    line-height: 35px;
-}
-.carte .contentCarte strong{
-    font-size: 18px;
-}
-.carte .contentCarte span{
-    font-size: 17px;
+
+.buttonSeleceted{
+    background-color: #e6f2f3 !important;
+    border: solid #017e84 !important;
+
+
 }
 
 .piece{
-    width:100%;
-    display: flex;
-    justify-content: center;
+    text-decoration:  none;
+    display: inline-block;
+    color: white ;
+         border: solid #d23f3a 1px ;
+  background-color: #d23f3a;
+    width: fit-content;
+    border-radius: 5px;
 
 }
-.dateEtat{
-    background-color: #10323a;
-    color: whitesmoke;
+.ticketinfo{
+    border: solid gray 1px;
+    border-radius: 5px;
 }
-    .piece a {
+.description span{
+    display: inline-block;
+        font-style: normal;
+    font-weight:700;
+    height: 5vh;
+    align-content: center;
+
+
+}
+.description p{
+    border-top:solid gray 2px;
+}
+.description span{
+    border: solid gray 2px ;
+    width: fit-content;
+ }
+ .ticketinfo h1{
+    font-style: normal;
+    font-weight:450;
+  }
+  .ticketinfo .info p span{
+     font-style: normal;
+    font-weight:570;
+
+  }
+  .etatTime ul li span{
+    font-style: normal;
+    font-weight:570;
+  }
+  .envoyerMessage{
+    display: none;
+  }
+  .showEnvoyerMessage{
+    display: block !important;
+  }
+
+.userAndMessage .user{
+       font-style: normal;
+    font-weight:650;
+
+
+}
+.message .date {
+       font-style: normal;
+    font-weight:400;
+    font-size: small;
+
+
+}
+.userAndMessage .message p {
+  border: solid #c0e8ca 1px ;
+  background-color: #e0f4e5;
+  width: fit-content;
+  border-radius: 7px;
+  padding: 10px;
+
+
+}
+.envoyerButton{
+    color: #714e6c  !important;
+    border: solid #714e6c 1px  !important;
+    background-color: #f1edf0 !important;
+    width: fit-content;
+    border-radius: 3px;
+    font-style: normal;
+    font-weight:500;
+    font-size: 15px;
+    padding: 4px 6px 4px 6px;
+
+}
+
+.pieceMessage a{
     text-decoration: none;
-    display: block;
-    border:solid 2px #10323a;
-    border-radius: 6px;
-    width: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-      background-color: #10323a;
-     color: whitesmoke;
-     font-size: 15px;
+    display: inline-block;
+    color: white;
+      border: solid #d23f3a 1px ;
+  background-color: #d23f3a;
+  width:170px;
+  text-align: center;
+  border-radius: 6px;
 
 
 }
+ .custom-file-label {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 24px;
+    color: #555;
+  }
 
+   #piecesJointes {
+    display: none;
+  }
+  .envoyer{
+    color: white ;
+    border: solid #714b67 ;
+    background-color: #714b67;
+    width: fit-content;
+    border-radius: 3px;
+    font-style: normal;
+    font-weight:500;
+    font-size: 15px;
+    padding: 4px 6px 4px 6px;
 
-.messagesCarte  {
-height: 100vh;
-
-
-
-
-}
-.messagesCarte .messages{
-    height: 60vh;
+  }
+  .messages{
+    height: 70vh;
     }
- .messagesCarte .inputmessage{
+  .inputmessage{
     height: 30vh;
 
   }
@@ -154,288 +259,122 @@ height: 100vh;
    scrollbar-width: thin;
   scrollbar-color: #888 #f0f0f0;
 }
-
-.messagesCarte .messages .message{
-    border: solid #10323a;
-    border-radius: 20px;
-      margin-bottom: 10px;
-}
-
-.userAndMessage{
-
-    border: solid #10323a;
-    background-color: #10323a;
-    border-radius: 15px 15px 0px 0px;
-    color: whitesmoke;
-    padding: 10px;
-}
-.userAndMessage .user{
-    font-size: 20px;
-}
-.messages .message .date{
-    text-align: center;
-  }
-.inputmessage form .row  .form-control{
-    width: 200px;
-
-}
-.inputmessage form .messageenvoyer{
-        border:solid #10323a;
-        border-radius: 15px;
-
-}
-.inputmessage form .row  .envoyer{
-        width: 5%;
-        border:solid #2c6ce1;
-        color: white;
-        border-radius: 20px;
-        background-color: #2c6ce1;
-
-
-}
-.details .ticketEtat .dateEtat{
-    padding: 12px;
-    line-height: 30px;
-    border: solid #10323a;
-}
-.details .ticketEtat  .dateEtat .etatButton button{
-     width: 150px;
-     border: solid  #2c6ce1;
-     border-radius: 15px;
-     background-color: #2c6ce1;
-     color: whitesmoke;
-
-
-
-}
-.pieceMessage{
-    width:100%;
-    display: flex;
-    margin-top: 5px;
-
-}
-    .pieceMessage a {
+.edit a{
+    display: inline-block;
     text-decoration: none;
-    display: block;
-    border:solid 2px black;
-    border-radius: 6px;
-    width: 150px;
+    color: white;
+    border: solid #714b67 ;
+    background-color: #714b67;
+            padding: 5px 8px 5px 8px ;
+            border-radius: 4px;
+
+}
+.delete button{
+        border: solid red;
+            background-color: red;
+            padding: 5px 8px 5px 8px ;
+             border-radius: 4px;
+             color: white;
+
+
+
+}
+.edit a:hover{
+
+    color: #714b67;
+    border: solid #714b67 ;
+    background-color: white;
+
+}
+.delete button:hover{
+        border: solid red;
+            background-color: white;
+
+             color: red;
+
+
+
+}
+
+@media (max-width:  1231px) {
+
+.twoDiv{
     display: flex;
-    align-items: center;
+    flex-direction: column ;
+}
+.ticket{
+    width: 99vw;
+}
+.comment{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-      background-color: whitesmoke;
-     color: #10323a;
-     font-size: 15px;
+        width:70vw ;
+
+}
+.messageInput{
+            width:70vw ;
+            margin-left: 10vw;
+
+
+}
+.messages{
+      display: flex;
+    flex-direction: column;
+    justify-content: center;
+            width:90vw ;
+                        margin-left: 5vw;
+
+
+
+}
+.envoyerMessage{
+     justify-content: center;
+}
+
+.etatButton div , .etatButton .button{
+    width: 15vw;
+}
 
 
 }
 
 
-
-
-
-@media (max-width: 1246px) {
-
-            .collapsed {
-            width: 100vw !important;
-            height: 48vh !important;
-            }
-
-
-             .sidebare .logo {
-
-                position: absolute;
-                top: 2px;
-                right:-10px;
-
-
-
-                }
-
-            .collapsed  .hide{
-                display: block !important;
-            }
-            .sidebare{
-                margin:0px;
-                padding: 0px;
-                width: 100vw;
-                height: 10vh;
-
-            }
-            .sidebare .hide{
-                   display: none;
-
-            }
-            .content{
-                height: 90vh;
-            }
-           .toggle-btn {
-                display: block;
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                background-color: #5fa8bb;
-                color: white;
-                border: none;
-                padding: 8px 14px;
-                font-size: 18px;
-                border-radius: 8px;
-                cursor: pointer;
-                z-index: 9999;
-                }
-
-    .toggle-btn:hover {
-        background-color: #3c7c91;
+@media (max-width: 645px) {
+    .navBar{
+        display: none !important;
     }
-
-
-
-
-    }
-    @media (max-width: 1096px) {
-        .content .twoBorder{
-            flex-direction: column;
-        }
-        .details{
-            width: 100vW;
-        }
-        .messagesCarte{
-            margin-top: 20px;
-         width: 100vW;
-         display: flex;
-         align-items: center;
-
-
-
-        }
-          .messagesCarte div{
-         width: 60vW;
-
-
-        }
-
-
-
-
-
-
-    }
-     @media (max-width: 772px) {
-            .details .ticketEtat .dateEtat {
-                flex-direction: column;
-
-
-            }
-            .details .ticketEtat .dateEtat .row {
-                flex-direction: column;
-
-
-            }
-     }
-
-     @media (max-width: 732px) {
-
-                .bareEtat{
-                width: 80vw;
-                }
-                .sidebare{
-                                margin:0px;
-                                padding: 0px;
-
-
-                            }
-
-
-                    }
-       @media (max-width: 532px) {
-
-        .inputmessage form div {
-            flex-direction: column;
-            align-items: center;
-
-        }
-        .inputmessage form .row  .form-control{
-            display: block;
-             width: 50vw;
-              margin-top: 10px;
-
+    .button{
+    display: block;
 }
-.inputmessage form .row  .envoyer{
-        width: 50vw;
-        margin-top: 10px;
+
 
 
 
 }
- .sidebare{
-                margin:0px;
-                padding: 0px;
 
 
-            }
-
-
-
-     }
-        @media (max-width: 532px) {
-                 .bareEtat{
-   width: 90vw;
-   margin-left: 30px;
-
+@media (max-width: 581px) {
+.etatButton div , .etatButton .button{
+    width: 20vw;
 }
- .sidebare{
-                margin:0px;
-                padding: 0px;
 
-
-            }
-
-
-
-     }
-      @media (max-width: 426px) {
-           .messagesCarte div{
-         width: 80vW;
-
-
-        }
-         .sidebare{
-                margin:0px;
-                padding: 0px;
-
-
-            }
-
-
-
-     }
-       @media (max-width: 393px) {
-
-                .bareEtat{
-   flex-direction: column;
-   width: 50vw;
-   align-items: center;
 
 
 }
-.details .bare{
-    align-items: center;
-    justify-content: center !important;
+@media (max-width: 434px) {
+.etatButton{
+    flex-direction: column;
 }
-  .messagesCarte div{
-         width: 90vW;
+.etatButton div , .etatButton .button{
+    width: 50vw;
+    margin-top: 5px;
+}
 
 
-        }
-         .sidebare{
-                margin:0px;
-                padding: 0px;
+}
 
 
-            }
-
-
-     }
 
 
 

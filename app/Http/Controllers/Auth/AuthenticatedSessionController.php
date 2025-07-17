@@ -29,12 +29,11 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         switch (auth()->user()->type) {
         case 'client':
-            return redirect()->route('dashboard.client'); // Redirect to the client dashboard route
+            return redirect()->route('dashboard.client');
         case 'assistant':
-            return redirect()->route('dashboard.assistant'); // Redirect to the assistant dashboard route
+            return redirect()->route('dashboard.assistant');
         case 'admin':
-            return redirect()->route('dashboard.admin'); // Redirect to the admin dashboard route
-
+            return redirect()->route('dashboard.admin');  
     }
 
     }

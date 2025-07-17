@@ -1,3 +1,716 @@
+
+    .navBar{
+        width: 99vw;
+        background-color: #ffffff;
+        height: 7vh;
+        padding-bottom: 100px;
+        border-bottom: solid 2px #e7e9ed;
+    }
+
+
+.navBar a{
+     display: inline-block;
+     width: fit-content;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: #000;
+  text-decoration: none;
+  padding: 10px;
+
+}
+.navBar a:hover{
+    background-color: #e7e9ed;
+    border-radius: 5px;
+
+}
+    .navBar .right{
+        display: flex;
+        justify-content: center;
+
+    }
+        .navBar .left{
+            display: flex;
+            justify-content: center;
+
+    }
+
+    .navBarMobile{
+        border: #e7e9ed solid 3px;
+        width: 65vw;
+        height: 95vh;
+        background-color: #ffffff;
+        position: absolute;
+        top: 29px;
+        display: none;
+
+
+
+    }
+     .navBarMobile a{
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px;
+            width: 100%;
+     color: black;
+    }
+    .navBarMobile a:hover{
+    background-color: #e7e9ed;
+    border-radius: 5px;
+
+}
+.button{
+
+    display: none;
+}
+.button button{
+    background-color: #714b67;
+    border: solid #714b67;
+    color: white;
+ }
+
+.collapsed{
+    display: block !important;
+}
+
+
+
+
+
+.piece{
+    text-decoration:  none;
+    display: inline-block;
+    color: white ;
+         border: solid #d23f3a 1px ;
+  background-color: #d23f3a;
+    width: fit-content;
+    border-radius: 5px;
+
+}
+.ticketinfo{
+    border: solid gray 1px;
+    border-radius: 5px;
+}
+.description span{
+    display: inline-block;
+        font-style: normal;
+    font-weight:700;
+    height: 5vh;
+    align-content: center;
+
+
+}
+.description p{
+    border-top:solid gray 2px;
+}
+.description span{
+    border: solid gray 2px ;
+    width: fit-content;
+ }
+ .ticketinfo h1{
+    font-style: normal;
+    font-weight:450;
+  }
+  .ticketinfo .info p span{
+     font-style: normal;
+    font-weight:570;
+
+  }
+.info input{
+    border: solid black 0;
+ background-color: #f9fafb   ;
+ }
+ h1 input {
+    display: inline-block;
+border:  solid black 0;
+     background-color: #f9fafb   ;
+ }
+ textarea{
+    border:  solid black 0;
+     background-color: #f9fafb   ;
+
+ }
+
+
+ .btnModifier {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    border: solid #714b67 ;
+    background-color: #714b67;
+            padding: 5px 8px 5px 8px ;
+            border-radius: 4px;
+
+}
+
+.btnModifier:hover{
+
+    color: #714b67;
+    border: solid #714b67 ;
+    background-color: white;
+
+}
+.status{
+
+ border-color: #714b67;
+ }
+
+
+  .form-control:focus {
+     border-color: white;
+
+ }
+  #piecesJointes {
+    display: none;
+  }
+
+@media (max-width:  993px) {
+    .ticket{
+        width: 99vw;
+    }
+    .ticketinfo{
+         max-width: 100%;        /* make it full-width */
+  padding-left: 40px;     /* custom horizontal padding */
+  padding-right: 40px;
+    }
+         .ticketinfo .input  {
+    border: #000;
+    }
+
+      .ticketinfo .input:focus  {
+    border: #000;
+    }
+
+
+
+
+}
+
+
+@media (max-width: 790px) {
+.status{
+    width: 60vw;
+}
+
+
+
+}
+
+@media (max-width: 645px) {
+    .navBar{
+        display: none !important;
+    }
+    .button{
+    display: block;
+}
+
+
+
+
+}
+
+
+
+@media (max-width: 460px) {
+
+
+
+
+}
+
+
+
+
+
+
+
+
+/* body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .layout {
+  height: 100%;
+ width: 100vw;
+
+}
+.sidebare{
+       background-color: #10323a;
+      color: white;
+      height: 100vh;
+
+}
+.sidebare div {
+    width: 100%;
+    height: 50px;
+
+}
+.sidebare div form {
+    width: 100%;
+    height: 50px;
+
+}
+.sidebare .logo {
+    margin-left: 30%;
+
+}
+.sidebare div a{
+             display: inline-block;
+             color: white;
+             width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+             padding-left: 25px;
+            text-decoration: none;
+            font-weight: 500;
+ }
+
+ .sidebare div a:hover {
+background-color: #5fa8bb;
+ }
+ .content{
+     background-color: #dce3e7;
+
+
+
+  }
+
+
+
+.toggle-btn{
+    display: none;
+
+}
+
+
+
+.messages{
+    height: 100vh;
+}
+.bareEtat{
+    margin-top: 10px;
+    margin-right: 5px;
+    align-items: center;
+}
+.columnEtat{
+    height: 31px;
+    border: 1px solid #10323a ;
+    background-color: whitesmoke;
+
+}
+.selectedEtat{
+    border: 1px solid whitesmoke;
+    background-color: #10323a;
+    color: whitesmoke;
+        height: 29px;
+
+}
+.carte{
+    margin-top: 10px;
+}
+.carte .title{
+    border:solid #10323a;
+    background-color: #10323a;
+    color: whitesmoke;
+    padding: 10px 10px 10px 20px  ;
+    border-radius: 20px 20px 0px 0px;
+    font-size: 22px;
+}
+.carte .contentCarte{
+    border:solid #10323a;
+    padding: 20px   ;
+    line-height: 35px;
+}
+.carte .contentCarte strong{
+    font-size: 18px;
+}
+.carte .contentCarte span{
+    font-size: 17px;
+}
+.action {
+        border:solid #10323a;
+       background-color: #10323a;
+
+
+
+}
+.action .row div{
+    width: max-content ;
+    height: 50px;
+
+}
+.piece{
+    width:100%;
+    display: flex;
+    justify-content: center;
+
+}
+    .piece a {
+    text-decoration: none;
+    display: block;
+    border:solid 2px #10323a;
+    border-radius: 6px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+      background-color: #10323a;
+     color: whitesmoke;
+     font-size: 15px;
+
+
+}
+.action .row .edit a {
+    text-decoration: none;
+    display: block;
+    border:solid 2px #2c6ce1;
+    width: 150px;
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 1px 5px 1px;
+    background-color: #2c6ce1 ;
+    color: whitesmoke;
+    border-radius: 6px;
+
+
+}
+.action .row .delete form {
+     height: 50px;
+
+}
+.action .row .delete form button {
+    text-decoration: none;
+    display: inline-block;
+    border:solid 2px  red;
+    width: 150px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     margin: 5px 1px 5px 1px;
+     background-color: red;
+     color: whitesmoke;
+     border-radius: 6px;
+}
+.messagesCarte  {
+height: 100vh;
+
+
+
+
+}
+.messagesCarte .messages{
+    height: 60vh;
+    }
+ .messagesCarte .inputmessage{
+    height: 30vh;
+
+  }
+  .message-scroll {
+   overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+
+
+   scrollbar-width: thin;
+  scrollbar-color: #888 #f0f0f0;
+}
+
+.messagesCarte .messages .message{
+    border: solid #10323a;
+    border-radius: 20px;
+      margin-bottom: 10px;
+}
+
+.userAndMessage{
+
+    border: solid #10323a;
+    background-color: #10323a;
+    border-radius: 15px 15px 0px 0px;
+    color: whitesmoke;
+    padding: 10px;
+}
+.userAndMessage .user{
+    font-size: 20px;
+}
+.messages .message .date{
+    text-align: center;
+  }
+.inputmessage form .row  .form-control{
+    width: 200px;
+
+}
+.inputmessage form .messageenvoyer{
+        border:solid #10323a;
+        border-radius: 15px;
+
+}
+.inputmessage form .row  .envoyer{
+        width: 5%;
+        border:solid #2c6ce1;
+        color: white;
+        border-radius: 20px;
+        background-color: #2c6ce1;
+
+
+}
+.details .ticketEtat .dateEtat{
+    padding: 12px;
+    line-height: 30px;
+    border: solid #10323a;
+}
+.details .ticketEtat  .dateEtat .etatButton button{
+     width: 150px;
+     border: solid  #2c6ce1;
+     border-radius: 15px;
+     background-color: #2c6ce1;
+     color: whitesmoke;
+
+
+
+}
+.pieceMessage{
+    width:100%;
+    display: flex;
+    margin-top: 5px;
+
+}
+    .pieceMessage a {
+    text-decoration: none;
+    display: block;
+    border:solid 2px black;
+    border-radius: 6px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+      background-color: whitesmoke;
+     color: #10323a;
+     font-size: 15px;
+
+
+}
+
+
+
+
+
+@media (max-width: 1246px) {
+
+            .collapsed {
+            width: 100vw !important;
+            height: 48vh !important;
+            }
+
+
+             .sidebare .logo {
+
+                position: absolute;
+                top: 2px;
+                right:-10px;
+
+
+
+                }
+
+            .collapsed  .hide{
+                display: block !important;
+            }
+            .sidebare{
+                margin:0px;
+                padding: 0px;
+                width: 100vw;
+                height: 10vh;
+
+            }
+            .sidebare .hide{
+                   display: none;
+
+            }
+            .content{
+                height: 90vh;
+            }
+           .toggle-btn {
+                display: block;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: #5fa8bb;
+                color: white;
+                border: none;
+                padding: 8px 14px;
+                font-size: 18px;
+                border-radius: 8px;
+                cursor: pointer;
+                z-index: 9999;
+                }
+
+    .toggle-btn:hover {
+        background-color: #3c7c91;
+    }
+
+
+
+
+    }
+    @media (max-width: 1096px) {
+        .content .twoBorder{
+            flex-direction: column;
+        }
+        .details{
+            width: 100vW;
+        }
+        .messagesCarte{
+            margin-top: 20px;
+         width: 100vW;
+         display: flex;
+         align-items: center;
+
+
+
+        }
+          .messagesCarte div{
+         width: 60vW;
+
+
+        }
+
+
+
+
+
+
+    }
+     @media (max-width: 772px) {
+            .details .ticketEtat .dateEtat {
+                flex-direction: column;
+
+
+            }
+            .details .ticketEtat .dateEtat .row {
+                flex-direction: column;
+
+
+            }
+     }
+
+     @media (max-width: 732px) {
+
+                .bareEtat{
+                width: 80vw;
+                }
+                .sidebare{
+                                margin:0px;
+                                padding: 0px;
+
+
+                            }
+
+
+                    }
+       @media (max-width: 532px) {
+
+        .inputmessage form div {
+            flex-direction: column;
+            align-items: center;
+
+        }
+        .inputmessage form .row  .form-control{
+            display: block;
+             width: 50vw;
+              margin-top: 10px;
+
+}
+.inputmessage form .row  .envoyer{
+        width: 50vw;
+        margin-top: 10px;
+
+
+
+}
+ .sidebare{
+                margin:0px;
+                padding: 0px;
+
+
+            }
+
+
+
+     }
+        @media (max-width: 532px) {
+                 .bareEtat{
+   width: 90vw;
+   margin-left: 30px;
+
+}
+ .sidebare{
+                margin:0px;
+                padding: 0px;
+
+
+            }
+
+
+
+     }
+      @media (max-width: 426px) {
+           .messagesCarte div{
+         width: 80vW;
+
+
+        }
+         .sidebare{
+                margin:0px;
+                padding: 0px;
+
+
+            }
+
+
+
+     }
+       @media (max-width: 393px) {
+
+                .bareEtat{
+   flex-direction: column;
+   width: 50vw;
+   align-items: center;
+
+
+}
+.details .bare{
+    align-items: center;
+    justify-content: center !important;
+}
+  .messagesCarte div{
+         width: 90vW;
+
+
+        }
+         .sidebare{
+                margin:0px;
+                padding: 0px;
+
+
+            }
+
+
+     }
+
+
+
+*/
+
+
+
+/*
+
  body {
       margin: 0;
       padding: 0;
@@ -156,3 +869,4 @@ label{
 
 
 
+*/

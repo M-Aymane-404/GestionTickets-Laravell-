@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
-
+Route::get('create/admin',[adminController::class, 'addFirstAdmin'])->name('addFirstAdmin');
+Route::post('store', [adminController::class, 'storeFirstAdmin'])->name('storeFirstAdmin');
 // auth crud
 
 Route::middleware('auth')->group(function () {
@@ -40,9 +41,6 @@ require __DIR__.'/auth.php';
         Route::get('create/ticket', [clientController::class, 'create'])->name('createTicket.client');
         Route::post('create/ticket', [clientController::class, 'store'])->name('ticketStore');
 
-
-
-
     });
 
 
@@ -57,12 +55,13 @@ require __DIR__.'/auth.php';
         Route::get('ticket/{ticket}', [assistantController::class, 'ticketDetails'])->name('ticketDetails.assistant');
         Route::post('storeMessage/{ticket}', [assistantMessageController::class, 'commenteStoreAssistant'])->name('storeMessageAssistant');
         Route::patch('updateEtat/{ticket}', [assistantController::class, 'updateEtats'])->name('updateEtats.assistant');
+        Route::get('statistic', [assistantController::class, 'statistic'])->name('statistic.assistant');
+
 
 
 
 
     });
-
 
 
 // admin routes
@@ -81,6 +80,7 @@ require __DIR__.'/auth.php';
         Route::post('store/user', [adminController::class, 'storeUser'])->name('storeUser.admin');
         Route::get('users',[adminController::class, 'assistantTicket'])->name('listerUsers.admin');
         Route::delete('user/{user}',[adminController::class,'destroyUser'])->name('user.delete');
+        Route::get('statistic', [adminController::class, 'statistcs'])->name('statistic.admin');
 
 
 

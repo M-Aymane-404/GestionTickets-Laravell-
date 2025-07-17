@@ -20,10 +20,10 @@
 
     </style>
     <body class="font-sans antialiased" >
-        <div class="min-h-screen" style="     background-color: #dce3e7;">
+        <div class="min-h-screen" style="     background-color: white;">
             <div class="col  d-flex align-items-center justify-content-end">
 <div class="col-2  mt-4 d-flex align-items-center justify-content-start" style="height: 50px;">
-  <a href="{{ route('dashboard.admin') }}" class="btn btn-dark ">Dashboard</a>
+  <a href="{{ route('dashboard.admin') }}" class="btn btn-dark ">tableau de bord</a>
 </div>
 </div>
 
