@@ -24,7 +24,7 @@
         <a href="{{ route('dashboard.admin') }}" class="pe-2 ps-2 pt-1 pb-1">tableau de bord</a>
         <a href="{{ route('listerUsers.admin') }}" class="pe-2 ps-2 pt-1 pb-1">Utilisateur</a>
         <a href="{{ route('addUser.admin') }}" class="pe-2 ps-2 pt-1 pb-1">Créer Utilisateur</a>
-        <a href="{{ route('addUser.admin') }}" class="pe-2 ps-2 pt-1 pb-1">Statistique</a>
+        <a href="{{ route('statistic.admin') }}" class="pe-2 ps-2 pt-1 pb-1">Statistique</a>
     </div>
 
     <div class="d-flex gap-3">
@@ -47,7 +47,7 @@
          <a href="{{ route('dashboard.admin') }}" class="pe-2 ps-2">tableau de bord</a><br>
         <a href="{{ route('listerUsers.admin') }}" class="pe-2 ps-2">Utilisateur</a><br>
         <a href="{{ route('addUser.admin') }}" class="pe-2 ps-2">Créer Utilisateur</a><br>
-        <a href="{{ route('addUser.admin') }}" class="pe-2 ps-2">Statistique</a><br>
+        <a href="{{ route('statistic.admin') }}" class="pe-2 ps-2">Statistique</a><br>
 
          <a href="{{ route('profile.edit') }}" class="pe-2 ps-2">Profile</a><br>
 

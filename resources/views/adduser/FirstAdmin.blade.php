@@ -74,7 +74,7 @@
         @else
         <div class=" d-flex align-items-center justify-content-center col-12">
 
-            <h1 class="mt-5" >impossible de cree un admin</h1>
+            <h1 class="mt-5" >impossible de cree un admin vous avez deja un compte</h1>
         </div>
     @endif
 </div>

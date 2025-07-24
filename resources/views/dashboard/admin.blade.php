@@ -76,7 +76,7 @@
 <div class="col-12 mt-4 d-flex justify-content-center   ">
     <form action="{{ route('dashboard.admin') }}" method="GET">
        @csrf
-          <input type="text" class="searchInput  " name="searchTerm" placeholder="Search tickets..."   >
+          <input type="text" class="searchInput  " name="searchTerm" placeholder="Search tickets..."  aria-label="Search" >
 
       <button class=" searchBtn" type="submit">Search</button>
     </form>

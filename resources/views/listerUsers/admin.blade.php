@@ -74,7 +74,7 @@
         <tbody>
        @foreach ($clients as $client )
 
-            <tr    style="cursor: pointer;">
+            <tr    style="cursor: context-menu;">
 
                 <td>{{ $client->lastName }} {{ $client->firstName }}</td>
                 <td>{{ $client->email }}</td>
@@ -110,11 +110,11 @@
         <tbody>
        @foreach ($assistants as $assistant )
 
-            <tr    style="cursor: pointer;">
+            <tr    style="cursor: context-menu;">
 
                 <td>{{ $assistant->lastName }} {{ $assistant->firstName }}</td>
                 <td>{{ $assistant->email }}</td>
-                <td>{{ $assistant->leNbTicketdemander() }}</td>
+                <td>{{ $assistant->leNbTicketAssignee() }}</td>
                 <td>
                   <form action="{{ route('user.delete',$assistant) }}" method="POST">
                           @csrf

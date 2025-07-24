@@ -31,12 +31,12 @@ $search = $request->input('searchTerm');
 
 
 $assistants = User::where([
-
+                        ['lastName', 'LIKE', '%' . $search . '%'],
                         ['type','assistant']
                             ])->get();
 
 $demandeurs = User::where([
-
+                        ['lastName', 'LIKE', '%' . $search . '%'],
                         ['type','client']
                             ])->get();
 
@@ -54,10 +54,9 @@ $demandeurs = User::where([
      foreach ($demandeurs as $demandeur) {
         $tickets->orWhere('demandeur', 'LIKE', '%' . $demandeur->email . '%');
     }
-     $tickets = $tickets->paginate(10);
+     $tickets = $tickets->paginate();
 
     return view ('dashboard.admin',compact('tickets','nomberTicket','nomberclient','nomberAssistant'));
-
     }
     elseif (auth()->user() && auth()->user()->type === 'client'){
         return redirect('client/dashboard');
