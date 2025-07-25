@@ -251,6 +251,7 @@ public function statistcs() {
     $stats = [];
 
     foreach ($assistants as $assignee) {
+       $assistant =  User::where('email',$assignee)->first();
         $tickets = Ticket::where('assignee', $assignee)
             ->where('etat', 'fermer')
             ->get();
@@ -267,19 +268,17 @@ public function statistcs() {
 
                 $duration = $start->diffInSeconds($end, false);
 
-                // Ignorer les durées négatives ou excessives (> 7 jours)
-                if ($duration >= 0 && $duration < 7 * 24 * 3600) {
+                if ($duration >= 0 ) {
                     $totalSeconds += $duration;
                     $count++;
                 }
             }
         }
 
-        // ✅ Ne divise que si au moins un ticket est comptabilisé
-$avgMinutes = $count > 0 ? round($totalSeconds / $count / 60, 2) : 0;
+ $avgMinutes = $count > 0 ? round($totalSeconds / $count / 60, 2) : 0;
 
       $stats[] = [
-    'assistant' => $assignee,
+    'assistant' => $assistant->lastName . ' ' . $assistant->firstName,
     'avg_closing_time_minutes' => $avgMinutes
 ];
     }

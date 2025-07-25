@@ -123,9 +123,9 @@
                 ticks: {
                     font: {
                         size: 14,
-                        family: 'Poppins' // change selon tes préférences
+                        family: 'Poppins' 
                     },
-                    color: '#000000', // couleur du texte sur l'axe Y
+                    color: '#000000',
                     stepSize: 1
                 }
             },
@@ -135,7 +135,7 @@
                         size: 14,
                         family: 'Poppins'
                     },
-                    color: '#000000' // couleur du texte sur l'axe X
+                    color: '#000000'
                 }
             }
         }

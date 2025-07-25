@@ -63,7 +63,7 @@
 
 
 
-<h2 class="mt-2 mb-2">Délai moyen de fermeture par assistant  </h2>
+<h2 class="mt-2 ms-3 mb-2">Délai moyen de fermeture par assistant  </h2>
 
 <div class="gragh">
     <canvas id="delaiChart"></canvas>
@@ -110,19 +110,25 @@
             }
         }
     },
-    scales: {
-        y: {
-            ticks: {
-                font: {
-                    size: 14,           // taille du texte
-                    family: 'Poppins',  // police
-                    weight: 'bold'      // texte en gras
-                },
-                color: '#000'           // couleur noire
-            }
-        }
+scales: {
+    y: {
+        ticks: {
+            font: {
+                size: 14,
+                weight: 'bold'
+            },
+             color: '#000'
+        },
+        // espace entre les barres
+        offset: true
     },
-    maintainAspectRatio: false
+    x: {
+        beginAtZero: true
+    }
+}
+,
+ maintainAspectRatio: false,
+
 }
 
     });

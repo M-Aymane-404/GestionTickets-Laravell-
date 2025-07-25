@@ -173,7 +173,7 @@ tr:hover{
 
 }
 .searchInput{
-    width: 40vw;
+    width: 45vw;
     height: 4.5vh;
     border: #969696 solid 1.5px;
     padding: 10px;
@@ -190,7 +190,7 @@ tr:hover{
   box-shadow: 1px 1px 1px #969696;
 
    margin-top: 5vh;
-    width: 40vw;
+    width: 45vw;
    position: absolute;
    background-color: #ffffff;
    border-radius: 5px;
@@ -218,7 +218,7 @@ tr:hover{
     overflow-y: auto;
     white-space: nowrap;
     scroll-snap-type: x mandatory;
-    max-height: 400px;
+    max-height: 500px;
 }
 
    #dropdownMenu {
@@ -236,13 +236,22 @@ tr:hover{
     }
 @media (max-width:  914px) {
 .searchBtn{
-        width: 10vw;
+        width: 20vw;
 
 
 }
 .statistic div{
 
     width: 20vw;
+
+}
+.searchInput{
+    width: 60vw;
+
+}
+.dropDown {
+
+    width: 60vw;
 
 }
 
@@ -260,11 +269,21 @@ tr:hover{
 }
 
 
-.searchBtn{
-        width: 12vw;
+.statistic div{
 
+    width: 30vw;
 
 }
+.searchInput{
+    width: 80vw;
+
+}
+.dropDown {
+
+    width: 80vw;
+
+}
+
 
 
 }
@@ -274,18 +293,19 @@ tr:hover{
 
 .statistic div{
 
-    width: 22vw;
 
 }
 
-.searchBtn{
-        width: 14vw;
 
-
-}
 .searchInput{
-    width: 50vw;
- }
+    width: 90vw;
+
+}
+.dropDown {
+
+    width: 90vw;
+
+}
 
 
 }
@@ -293,7 +313,7 @@ tr:hover{
 
 .statistic div{
 
-    width: 25vw;
+    width: 32vw;
 
 }
 
@@ -302,9 +322,6 @@ tr:hover{
 
 
 }
-.searchInput{
-    width: 56vw;
- }
 
 
 }

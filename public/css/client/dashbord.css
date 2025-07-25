@@ -148,11 +148,12 @@ tr:hover{
     width: 40vw;
 }
 
-.table{
-    overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  scroll-snap-type: x mandatory;
+.table {
+    overflow-x: auto;
+    overflow-y: auto;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    max-height: 80vh;
 }
 @media (max-width:  914px) {
 

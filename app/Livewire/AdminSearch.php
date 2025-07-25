@@ -44,16 +44,19 @@ public function updatedQuery($value)
 
      public function searchByTitre()
     {
-      $this->tickets = Ticket::where('titre', 'LIKE', '%' . $this->query . '%')->get();
+       $cleanQuery = trim($this->query);
+      $this->tickets = Ticket::where('titre', 'LIKE', '%' . $cleanQuery . '%')->get();
     }
 
 
 public function searchByAssistant()
 {
+
+     $cleanQuery = trim($this->query);
     $assistants = User::where('type', 'assistant')
-        ->where(function ($query) {
-            $query->where('lastName', 'LIKE', '%' . $this->query . '%')
-                  ->orWhere('firstName', 'LIKE', '%' . $this->query . '%');
+        ->where(function ($query) use ($cleanQuery)  {
+            $query->where('lastName', 'LIKE', '%' . $cleanQuery. '%')
+                  ->orWhere('firstName', 'LIKE', '%' . $cleanQuery . '%');
         })
         ->get();
 
@@ -63,7 +66,7 @@ public function searchByAssistant()
         $query->orWhere('assignee', 'LIKE', '%' . $assistant->email . '%');
     }
 
-     $query->orWhere('assignee', 'LIKE', '%' . $this->query . '%');
+     $query->orWhere('assignee', 'LIKE', '%' . $cleanQuery . '%');
 
     $this->tickets = $query->get();
 }
@@ -72,10 +75,11 @@ public function searchByAssistant()
 
  public function searchByDemandeur()
 {
+      $cleanQuery = trim($this->query);
     $demandeurs = User::where('type', 'client')
-        ->where(function ($query) {
-            $query->where('lastName', 'LIKE', '%' . $this->query . '%')
-                  ->orWhere('firstName', 'LIKE', '%' . $this->query . '%');
+        ->where(function ($query) use ($cleanQuery)  {
+            $query->where('lastName', 'LIKE', '%' .  $cleanQuery . '%')
+                  ->orWhere('firstName', 'LIKE', '%' .  $cleanQuery . '%');
         })
         ->get();
 
@@ -85,16 +89,18 @@ public function searchByAssistant()
         $query->orWhere('demandeur', 'LIKE', '%' . $demandeur->email . '%');
     }
 
-     $query->orWhere('demandeur', 'LIKE', '%' . $this->query . '%');
+     $query->orWhere('demandeur', 'LIKE', '%' .  $cleanQuery . '%');
 
     $this->tickets = $query->get();
 }
 
 
-      public function searchByStatus()
-    {
-      $this->tickets = Ticket::where('etat', 'LIKE',  '%' . $this->query . '%')->get();
-    }
+   public function searchByStatus()
+{
+    $cleanQuery = str_replace(' ', '', $this->query); // removes all spaces
+
+  $this->tickets = Ticket::where('etat', 'LIKE', '%' . $cleanQuery . '%')->get();
+}
 
     public function render()
     {

@@ -77,6 +77,7 @@
       border-collapse: collapse;
       margin: 0;
     }
+
     td {
       padding: 7px;
       border-bottom: 1px solid #ddd;
@@ -148,11 +149,12 @@ tr:hover{
     width: 40vw;
 }
 
-.table{
-    overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  scroll-snap-type: x mandatory;
+.table {
+    overflow-x: auto;
+    overflow-y: auto;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    max-height: 70vh;
 }
 @media (max-width:  914px) {
 
