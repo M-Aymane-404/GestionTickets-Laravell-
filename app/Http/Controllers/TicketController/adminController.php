@@ -27,36 +27,7 @@ $nomberAssistant = User::where('type','assistant')->count();
 $nomberclient = User::where('type','client')->count();
 $nomberTicket= Ticket::all()->count();
 
-$search = $request->input('searchTerm');
-
-
-$assistants = User::where([
-                        ['lastName', 'LIKE', '%' . $search . '%'],
-                        ['type','assistant']
-                            ])->get();
-
-$demandeurs = User::where([
-                        ['lastName', 'LIKE', '%' . $search . '%'],
-                        ['type','client']
-                            ])->get();
-
-
-        $tickets = Ticket::where('titre', 'LIKE',  '%' . $search . '%')
-                         ->orWhere('demandeur', 'LIKE',  '%' . $search . '%')
-                         ->orWhere('assignee', 'LIKE', '%' . $search . '%')
-                         ->orWhere('etat', 'LIKE',  '%' . $search . '%');
-
-
-
- foreach ($assistants as $assistant) {
-        $tickets->orWhere('assignee', 'LIKE', '%' . $assistant->email . '%');
-    }
-     foreach ($demandeurs as $demandeur) {
-        $tickets->orWhere('demandeur', 'LIKE', '%' . $demandeur->email . '%');
-    }
-     $tickets = $tickets->paginate();
-
-    return view ('dashboard.admin',compact('tickets','nomberTicket','nomberclient','nomberAssistant'));
+     return view ('dashboard.admin',compact('nomberTicket','nomberclient','nomberAssistant'));
     }
     elseif (auth()->user() && auth()->user()->type === 'client'){
         return redirect('client/dashboard');

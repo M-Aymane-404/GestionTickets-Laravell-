@@ -165,6 +165,7 @@ tr:hover{
 }
 .searchBtn{
         width: 7vw;
+        height: 2vh;
          border: solid #52374b ;
     background-color:#52374b ;
     border-radius: 3px;
@@ -174,17 +175,65 @@ tr:hover{
 .searchInput{
     width: 40vw;
     height: 4.5vh;
-    border: #969696 solid 2px;
+    border: #969696 solid 1.5px;
     padding: 10px;
     font-size: 14px;
     border-radius: 5px;
 }
-.table{
-    overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  scroll-snap-type: x mandatory;
+.searchInput:focus:not(:placeholder-shown){
+
+    border-color: #017e84 ;
+
 }
+.dropDown {
+        border: #969696 solid 0.1px;
+  box-shadow: 1px 1px 1px #969696;
+
+   margin-top: 5vh;
+    width: 40vw;
+   position: absolute;
+   background-color: #ffffff;
+   border-radius: 5px;
+}
+.dropDown a {
+    color: black;
+    text-decoration: none;
+    padding-left: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    display: inline-block;
+    width: 100%;
+}
+.dropDown a:hover {
+    background-color: #ebebeb;
+
+}
+.dropDown a span {
+    color: #714b67;
+  font-style: italic;
+  font-weight: bold;
+}
+.table {
+    overflow-x: auto;
+    overflow-y: auto;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    max-height: 400px;
+}
+
+   #dropdownMenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    /* Show dropdown when parent (wrapper) is focused */
+    .search-wrapper:focus-within #dropdownMenu {
+      display: block;
+    }
 @media (max-width:  914px) {
 .searchBtn{
         width: 10vw;

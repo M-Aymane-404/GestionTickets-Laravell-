@@ -25,7 +25,7 @@ class adminMessageController extends Controller
      $messageData = array_merge($request->validated(), [
         'emetteur' => auth()->user()->lastName,
         'ticket_id' => $ticket->id,
-        'piecesJointes' => $piecesJointes, 
+        'piecesJointes' => $piecesJointes,
     ]);
 
 
@@ -36,8 +36,7 @@ class adminMessageController extends Controller
     $message = Message::create($messageData);
 
        return redirect()->route('ticketDetails.admin',  ['ticket' => $ticket->id]);
-       //return redirect()->route('dashboard.client');
-    }
+     }
 
 
 
